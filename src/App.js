@@ -1,7 +1,10 @@
+import * as React from "react";
 import Home from "./routes/Home";
 /*import { Roadmap } from "../routes/Roadmap";
 import { Signup } from "../routes/Signup";*/
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+/*import { Reset } from "styled-reset";*/
+import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
   return (
@@ -21,6 +24,7 @@ function App() {
           </Route>*/}
         </Switch>
       </Router>
+      <GlobalStyle />
     </div>
   );
 }

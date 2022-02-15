@@ -1,7 +1,6 @@
 //import { useState } from "react";
-import { Link } from "react-router-dom";
 import DesktopContainer from "./DesktopContainer";
-import NavbarMenu from "./NavbarLeft";
+import "../styles/Header.css";
 
 const Header = () => {
   return (

@@ -1,9 +1,12 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as All from "@fortawesome/free-solid-svg-icons";
+
 const NavbarSearch = () => {
   return (
     <div className="navbar-search">
       <input type="text" className="input" />
       <span>
-        <i className="fas fa-search"></i>
+        <FontAwesomeIcon icon={All.faSearch} />
       </span>
     </div>
   );

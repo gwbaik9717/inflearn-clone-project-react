@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as All from "@fortawesome/free-solid-svg-icons";
 import NavbarItem from "./NavbarItem";
 import NavbarSearch from "./NavbarSearch";
 
@@ -7,13 +9,13 @@ const NavbarRight = () => {
     {
       title: "",
       hasDropdown: true,
-      icon: <i className="fas fa-shopping-cart"></i>,
+      icon: <FontAwesomeIcon icon={All.faShoppingCart} />,
       id: "cart",
     },
     {
       title: "",
       hasDropdown: true,
-      icon: <i className="far fa-bell"></i>,
+      icon: <FontAwesomeIcon icon={All.faBell} />,
       id: "message",
     },
     {
@@ -39,12 +41,13 @@ const NavbarRight = () => {
           title={title}
           hasDropdown={hasDropdown}
           icon={icon}
+          id={id}
         />
       ))}
 
       <div className="navbar-item" id="recent-lecture">
         <a href="#" className="btn">
-          <i className="fas fa-pencil-alt"></i>
+          <FontAwesomeIcon icon={All.faPencil} />
           <span>최근강의</span>
         </a>
       </div>

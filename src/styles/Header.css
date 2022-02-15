@@ -1,0 +1,152 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 72;
+  background-color: #fff;
+}
+
+header .navbar {
+  z-index: 75;
+  height: 64px;
+  box-shadow: 0 2px 4px 0 hsl(0deg 0% 81% / 50%);
+}
+
+header .navbar .container {
+  padding: 0 10px;
+}
+
+header .navbar .container .content {
+  display: flex;
+}
+
+header .navbar .navbar-logo {
+  margin-right: 8px;
+  width: 110px;
+  height: 64px;
+}
+
+header .navbar .navbar-logo a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header .navbar .navbar-logo a svg {
+  fill: #1dc078;
+}
+
+header .navbar .navbar-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+header .navbar .navbar-menu .navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item {
+  color: #4a4a4a;
+  position: relative;
+  line-height: 1.5;
+  display: flex;
+}
+
+header .navbar .navbar-menu .navbar-left .navbar-item:first-child {
+  padding: 8px 14px 8px 24px;
+}
+
+header .navbar .navbar-menu .navbar-left .navbar-item:first-child a {
+}
+
+header .navbar .navbar-menu .navbar-left .navbar-item {
+  padding: 8px 14px 8px 14px;
+}
+
+header .navbar .navbar-menu .navbar-left .navbar-item a {
+  display: flex;
+  padding: 8px 8px;
+  height: 48px;
+  align-items: center;
+}
+
+header .navbar .navbar-menu .navbar-left .navbar-item a span {
+}
+
+header .navbar .navbar-menu .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+header .navbar .navbar-menu .navbar-right .navbar-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px;
+  width: 12rem;
+  position: relative;
+}
+
+header .navbar .navbar-menu .navbar-right .navbar-search .input {
+  padding: 5px 9px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  cursor: text;
+  height: 36px;
+  margin: 6px 0px;
+}
+
+header .navbar .navbar-menu .navbar-right .navbar-search .input:focus {
+  border: 1px solid rgb(0, 196, 113);
+}
+
+header .navbar .navbar-menu .navbar-right .navbar-search span {
+  color: #4a4a4a;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+header .navbar .navbar-menu .navbar-right .navbar-item {
+  padding: 8px 8px;
+}
+
+/* 중복 처리 필요 */
+header .navbar .navbar-menu .navbar-right .navbar-item a {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+}
+
+#recent-lecture {
+  align-items: center;
+  justify-content: center;
+}
+
+#recent-lecture a {
+  height: auto;
+  padding: 8px 8px;
+  background-color: rgb(0, 196, 113);
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  line-height: 1;
+}
+
+#recent-lecture a i {
+  font-size: 16px;
+}
+
+#recent-lecture a span {
+  margin-left: 4px;
+}
+
+#profile a .icon {
+  border-radius: 50%;
+  overflow: hidden;
+}

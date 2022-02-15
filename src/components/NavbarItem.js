@@ -1,8 +1,8 @@
 const NavbarItem = ({ title, hasDropdown, icon, id }) => {
   return (
-    <div className="navbar-item">
+    <div className="navbar-item" id={icon ? id : null}>
       <a href="#">
-        <span>{title ? title : icon}</span>
+        <span className={icon ? "icon" : null}>{title ? title : icon}</span>
       </a>
       {/*hasDropdown ? :*/}
     </div>
