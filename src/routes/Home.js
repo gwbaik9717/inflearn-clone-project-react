@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer/Footer";
 
 const Home = () => {
   return (
     <div>
       <Header />
+      <Footer />
     </div>
   );
 };
