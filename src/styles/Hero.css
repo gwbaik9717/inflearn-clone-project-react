@@ -1,0 +1,249 @@
+/* HERO */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero .swiper-container {
+  width: 100%;
+}
+
+.hero .swiper-container .swiper-wrapper {
+}
+
+.hero .swiper-container .swiper-wrapper .swiper-slide {
+  height: 320px;
+}
+
+.hero .swiper-container .swiper-wrapper .swiper-slide .banner-bg {
+  background-color: #153a55;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.hero .swiper-container .swiper-wrapper .swiper-slide .banner-bg .container {
+  height: 100%;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-left {
+  position: absolute;
+  top: 44%;
+  left: 10px;
+  transform: translateY(-50%);
+  max-width: 400px;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-left
+  .banner-tags {
+  display: inline-flex;
+  margin-bottom: 16px;
+  justify-content: flex-start;
+  align-items: center;
+  color: #000;
+  margin-right: 6px;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-left
+  .banner-tags
+  span {
+  background-color: #48ff1d;
+  padding: 0 10px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-left
+  .banner-title {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-left
+  .banner-details {
+  color: white;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-right {
+  height: 100%;
+  width: 737px;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+}
+
+.hero
+  .swiper-container
+  .swiper-wrapper
+  .swiper-slide
+  .banner-bg
+  .container
+  .banner-right
+  img {
+  object-fit: cover;
+  height: 100%;
+  object-position: left;
+}
+
+.hero .swiper-container .pagination-controller {
+  border-bottom: 1px solid #e9ecef;
+  height: 64px;
+}
+
+.hero .swiper-container .pagination-controller .container {
+  display: grid;
+  padding: 13.5px 10px 0 10px;
+  grid-template-columns: 135px 33px 1fr 52px;
+  height: 100%;
+}
+
+.hero
+  .swiper-container
+  .pagination-controller
+  .container
+  .swiper-pagination-controller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 135px;
+  height: 36px;
+  font-size: 0.825rem;
+  color: #fff;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 1rem;
+}
+
+.hero
+  .swiper-container
+  .pagination-controller
+  .container
+  .swiper-pagination-controller
+  .current-index {
+  font-size: 0.875rem;
+}
+
+.hero
+  .swiper-container
+  .pagination-controller
+  .container
+  .swiper-pagination-controller
+  .controller-wrapper {
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+
+.hero .swiper-container .pagination-controller .container .divider {
+  width: 1px;
+  height: 36px;
+  margin: 0 1rem;
+  background-color: #dee2e6;
+}
+
+.hero
+  .swiper-container
+  .pagination-controller
+  .container
+  .swiper-pagination-wrapper {
+  height: 36px;
+  position: relative;
+}
+
+.hero
+  .swiper-container
+  .pagination-controller
+  .container
+  .swiper-pagination-wrapper
+  .swiper-pagination {
+  height: 36px;
+  display: flex;
+  width: 100%;
+  bottom: 0;
+}
+
+.hero
+  .swiper-container
+  .pagination-controller
+  .container
+  .swiper-pagination-wrapper
+  .swiper-pagination
+  .swiper-pagination-bullet {
+  padding: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  height: 36px;
+  color: #495057;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #fff;
+  width: auto;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(206, 212, 218);
+  box-shadow: rgb(206, 212, 218) 0px 0px 0px 1px inset;
+  opacity: 1;
+}
+
+.hero .swiper-container .pagination-controller .container .btn {
+  margin-left: 1rem;
+  padding: 1px 6px;
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 50%;
+  font-size: 1rem;
+  color: #495057;
+  width: 36px;
+  height: 36px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}

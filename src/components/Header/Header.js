@@ -1,6 +1,6 @@
 //import { useState } from "react";
 import DesktopContainer from "./DesktopContainer";
-import "../styles/Header.css";
+import "../../styles/Header.css";
 
 const Header = () => {
   return (
