@@ -26,6 +26,22 @@
   cursor: pointer;
 }
 
+.slider .swiper-prev {
+  left: -24px;
+}
+
+.slider .swiper-next {
+  right: -24px;
+}
+
+.slider .navBtn.swiper-button-disabled {
+  color: #efefef;
+  opacity: 0.85;
+  cursor: not-allowed;
+  border: 1px solid #efefef;
+  box-shadow: 0 2px 8px 0 transparent;
+}
+
 .slider .navBtn.circle {
   opacity: 0.85;
   position: absolute;
@@ -39,7 +55,4 @@
   bottom: 0;
   margin: auto 0;
   background-color: #fff;
-}
-
-.slider .navBtn.square {
 }

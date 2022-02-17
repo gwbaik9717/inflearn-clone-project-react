@@ -82,8 +82,8 @@ const CoursesLists = () => {
         modules={[Navigation]}
         className="swiper-container"
         navigation={{
-          nextEl: ".swiper-next",
-          prevEl: ".swiper-prev",
+          nextEl: ".courses .swiper-next",
+          prevEl: ".courses .swiper-prev",
         }}
         slidesPerView={5}
         spaceBetween={6}

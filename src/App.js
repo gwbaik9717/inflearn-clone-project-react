@@ -5,6 +5,7 @@ import { Signup } from "../routes/Signup";*/
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 /*import { Reset } from "styled-reset";*/
 import GlobalStyle from "./styles/GlobalStyle";
+import "./styles/Slider.css";
 
 function App() {
   return (

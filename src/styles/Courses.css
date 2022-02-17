@@ -255,11 +255,3 @@
   .course-card--back {
   position: absolute;
 }
-
-.courses .container .main-courses-list .courses-lists .swiper-prev {
-  left: -24px;
-}
-
-.courses .container .main-courses-list .courses-lists .swiper-next {
-  right: -24px;
-}

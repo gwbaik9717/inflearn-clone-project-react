@@ -2,13 +2,15 @@ import CoursesHeader from "./CoursesHeader";
 import CoursesHeaderWithID from "./CoursesHeaderWithID";
 import CoursesDetail from "./CoursesDetail";
 
-const Header = ({ id, title }) => {
+import 
+
+const SliderHeader = ({ id, sort }) => {
   return (
     <div className="header">
-      {id ? <CoursesHeaderWithID id={id} /> : <CoursesHeader title={title} />}
-      {id ? <CoursesDetail /> : null}
+      {id ? <SliderHeaderWithID id={id} /> : null}
+      {id ? <SliderDetail /> : null}
     </div>
   );
 };
 
-export default Header;
+export default SliderHeader;

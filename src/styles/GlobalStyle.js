@@ -69,6 +69,7 @@ const GlobalStyle = createGlobalStyle`
   
   .content {
     word-break: break-word;
+    position: relative;
   }
   
   .input {
