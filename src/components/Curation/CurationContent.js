@@ -4,13 +4,13 @@ import styled from "styled-components";
 const StyledContainer = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
-`;
 
-const StyledWrapper = styled.div`
-  display: inline-flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  min-width: 100%;
+  .curation-wrapper {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    min-width: 100%;
+  }
 `;
 
 const CurationContent = () => {
@@ -35,7 +35,7 @@ const CurationContent = () => {
   return (
     <div className="content">
       <StyledContainer className="curation-container">
-        <StyledWrapper className="curation-wrapper">
+        <div className="curation-wrapper">
           {data.map(({ title, img, desc }, index) => (
             <CurationCard
               key={title}
@@ -45,7 +45,7 @@ const CurationContent = () => {
               index={index}
             />
           ))}
-        </StyledWrapper>
+        </div>
       </StyledContainer>
     </div>
   );

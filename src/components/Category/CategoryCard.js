@@ -11,25 +11,26 @@ const StyledCategoryCard = styled.a`
   min-height: 104px;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
   border-radius: 8px;
-`;
 
-const StyledIconCover = styled.div`
-  background-image: url(https://cdn.inflearn.com/public/main/category/icons_sprites.png);
-  background-position: ${({ backgroundPosition }) => backgroundPosition};
-  background-repeat: no;
-  width: 52px;
-  height: 52px;
-  margin-bottom: 4px;
-  box-sizing: content-box;
+  .icon-cover {
+    background-image: url(https://cdn.inflearn.com/public/main/category/icons_sprites.png);
+    background-position: ${({ backgroundPosition }) => backgroundPosition};
+    background-repeat: no;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 4px;
+    box-sizing: content-box;
+  }
 `;
 
 const CategoryCard = ({ title, backgroundPosition }) => {
   return (
-    <StyledCategoryCard href="#" className="category-card">
-      <StyledIconCover
-        backgroundPosition={backgroundPosition}
-        className="icon-cover"
-      ></StyledIconCover>
+    <StyledCategoryCard
+      href="#"
+      backgroundPosition={backgroundPosition}
+      className="category-card"
+    >
+      <div className="icon-cover"></div>
       <div className="icon-title">{title}</div>
     </StyledCategoryCard>
   );

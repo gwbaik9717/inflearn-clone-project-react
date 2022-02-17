@@ -7,6 +7,7 @@ import PopularTags from "../components/PopularTags/PopularTags";
 import Courses from "../components/Courses/Courses";
 import Category from "../components/Category/Category";
 import Curation from "../components/Curation/Curation";
+import Apply from "../components/Apply/Apply";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         <Courses id="알고리즘" title="courses" />
         <Category title="더 둘러보기" />
         <Curation />
+        <Apply />
       </main>
 
       <Footer />

@@ -4,19 +4,19 @@ import styled from "styled-components";
 
 const StyledCuration = styled.section`
   padding: 24px 0;
-`;
 
-const StyledContainer = styled.div`
-  padding: 0 10px;
+  .container {
+    padding: 0 10px;
+  }
 `;
 
 const Category = () => {
   return (
     <StyledCuration className="Curation slider">
-      <StyledContainer className="container">
+      <div className="container">
         <CurationHeader />
         <CurationContent />
-      </StyledContainer>
+      </div>
     </StyledCuration>
   );
 };

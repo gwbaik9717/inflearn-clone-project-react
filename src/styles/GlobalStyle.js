@@ -43,7 +43,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   .btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;

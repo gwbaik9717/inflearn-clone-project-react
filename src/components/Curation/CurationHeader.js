@@ -4,33 +4,33 @@ import * as All from "@fortawesome/free-solid-svg-icons";
 
 const StyledHeader = styled.div`
   margin-bottom: 16px;
-`;
 
-const StyledTitle = styled.h2`
-  color: #1e1e1e;
-  font-size: 1.5rem;
-  line-height: 1.5;
-`;
+  .title {
+    color: #1e1e1e;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
 
-const StyledIcon = styled.span`
-  width: 1rem;
-  height: 1rem;
-  line-height: 1;
-  font-size: 1rem;
-  display: inline;
-  margin-left: 10px;
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    line-height: 1;
+    font-size: 1rem;
+    display: inline;
+    margin-left: 10px;
+  }
 `;
 
 const CurationHeader = () => {
   return (
     <StyledHeader className="header">
       <a href="#">
-        <StyledTitle className="title">
+        <h2 className="title">
           읽어보기
-          <StyledIcon className="icon">
+          <span className="icon">
             <FontAwesomeIcon icon={All.faChevronRight} />
-          </StyledIcon>
-        </StyledTitle>
+          </span>
+        </h2>
       </a>
     </StyledHeader>
   );
