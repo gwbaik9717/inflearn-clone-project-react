@@ -6,6 +6,7 @@ import Search from "../components/Search";
 import PopularTags from "../components/PopularTags/PopularTags";
 import Courses from "../components/Courses/Courses";
 import Category from "../components/Category/Category";
+import Curation from "../components/Curation/Curation";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         <Courses id="JavaScript" title="courses" />
         <Courses id="알고리즘" title="courses" />
         <Category title="더 둘러보기" />
+        <Curation />
       </main>
 
       <Footer />

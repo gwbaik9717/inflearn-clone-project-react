@@ -25,12 +25,12 @@ const StyledIconCover = styled.div`
 
 const CategoryCard = ({ title, backgroundPosition }) => {
   return (
-    <StyledCategoryCard href="#" class="category-card">
+    <StyledCategoryCard href="#" className="category-card">
       <StyledIconCover
         backgroundPosition={backgroundPosition}
-        class="icon-cover"
+        className="icon-cover"
       ></StyledIconCover>
-      <div class="icon-title">{title}</div>
+      <div className="icon-title">{title}</div>
     </StyledCategoryCard>
   );
 };

@@ -18,7 +18,7 @@ const CategoryContent = () => {
   ];
 
   return (
-    <div class="content">
+    <div className="content">
       <Swiper
         modules={[Navigation]}
         className="swiper-container"
