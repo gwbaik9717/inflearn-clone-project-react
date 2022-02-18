@@ -1,7 +1,7 @@
 import * as React from "react";
 import Home from "./routes/Home";
-/*import { Roadmap } from "../routes/Roadmap";
-import { Signup } from "../routes/Signup";*/
+import Roadmap from "./routes/Roadmap";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 /*import { Reset } from "styled-reset";*/
 import GlobalStyle from "./styles/GlobalStyle";
@@ -13,15 +13,15 @@ function App() {
     <div>
       <Router>
         <Switch>
+          <Route path="/roadmap">
+            <Roadmap />
+          </Route>
+
           <Route path="/">
             <Home />
           </Route>
 
-          {/*<Route path="/roadmap">
-            <Roadmap />
-          </Route>
-
-          <Route path="/signup">
+          {/*<Route path="/signup">
             <Signup />
           </Route>*/}
         </Switch>

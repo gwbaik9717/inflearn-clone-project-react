@@ -164,6 +164,10 @@ const GlobalStyle = createGlobalStyle`
     transform-origin: center;
     cursor: pointer;
   }
+
+  .is-hidden{
+    display:none;
+  }
   
 `;
 
