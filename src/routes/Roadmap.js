@@ -3,6 +3,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import RoadmapHero from "../components/RoadmapHero/RoadmapHero";
 import RoadmapMain from "../components/RoadmapMain/RoadmapMain";
+import RoadmapApply from "../components/RoadmapApply/RoadmapApply";
 
 const Roadmap = () => {
   return (
@@ -16,8 +17,7 @@ const Roadmap = () => {
         </section>
       </main>
 
-      {/*<RoadmapApply />*/}
-
+      <RoadmapApply />
       <Footer />
     </div>
   );
