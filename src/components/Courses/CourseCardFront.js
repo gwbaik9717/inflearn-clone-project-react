@@ -1,9 +1,57 @@
 import CourseTag from "./CourseTag";
 import CourseRatingStars from "./CoursesRatingStars";
+import styled from "styled-components";
+
+const StyledCardFront = styled.a`
+  .card-detail {
+    padding: 0.5rem 0;
+  }
+
+  .course-title {
+    font-weight: 700;
+    line-height: 1.5em;
+    height: 3rem;
+    overflow: hidden;
+  }
+
+  .course-instructor {
+    color: #7d7d7d;
+    font-size: 0.9rem;
+  }
+
+  .course-rating {
+    position: relative;
+  }
+
+  .review-count {
+    font-size: 0.5rem;
+    position: absolute;
+    bottom: 0.3rem;
+    color: #4a4a4a;
+  }
+
+  .review-count {
+    font-size: 0.5rem;
+    position: absolute;
+    bottom: 0.3rem;
+    color: #4a4a4a;
+  }
+
+  .course-price {
+    color: #175cbe;
+    font-weight: 700;
+  }
+
+  .course-tags {
+    display: flex;
+    padding-top: 0.5rem;
+    box-sizing: content-box;
+  }
+`;
 
 const CourseCardFront = ({ title, tags, author, img, reviewCount, price }) => {
   return (
-    <a href="#" className="course-card--front">
+    <StyledCardFront href="#" className="course-card--front">
       <div className="card-image">
         <img src={img} alt={title} />
       </div>
@@ -25,7 +73,7 @@ const CourseCardFront = ({ title, tags, author, img, reviewCount, price }) => {
           ))}
         </div>
       </div>
-    </a>
+    </StyledCardFront>
   );
 };
 

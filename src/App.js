@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 /*import { Reset } from "styled-reset";*/
 import GlobalStyle from "./styles/GlobalStyle";
 import "./styles/Slider.css";
-import "./styles/Swiper.css";
 
 function App() {
   return (

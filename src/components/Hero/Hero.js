@@ -1,11 +1,27 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import SwiperSlideElements from "./SwiperSlideElements";
 import PaginationController from "./PaginationController";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "../../styles/Hero.css";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const StyledHero = styled.section`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .swiper-container {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    height: 320px;
+  }
+`;
 
 const Hero = () => {
   const datas = [
@@ -34,20 +50,29 @@ const Hero = () => {
 
   const menu = ["지식공유의 전당", "리액트 네이티브", "리팩토링"];
 
+  const [slideChanged, setSlideChanged] = useState(false);
+
   return (
-    <section className="hero">
+    <StyledHero className="hero">
       <Swiper
-        modules={[Pagination]}
+        modules={[Pagination, Navigation]}
         className="swiper-container"
+        navigation={{
+          nextEl: ".hero .swiper-next",
+          prevEl: ".hero .swiper-prev",
+        }}
         pagination={{
-          el: ".swiper-pagination",
+          el: ".hero .swiper-pagination",
           clickable: true,
           renderBullet: function (index, className) {
             return '<span class="' + className + '">' + menu[index] + "</span>";
           },
         }}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
+        onSlideChange={() => {
+          setSlideChanged(true);
+          setSlideChanged(false);
+        }}
         onSwiper={(swiper) => console.log(swiper)}
       >
         {datas.map(({ title, tags, details, img, bgColor }, index) => (
@@ -61,9 +86,9 @@ const Hero = () => {
           </SwiperSlide>
         ))}
 
-        <PaginationController />
+        <PaginationController length={menu.length} />
       </Swiper>
-    </section>
+    </StyledHero>
   );
 };
 

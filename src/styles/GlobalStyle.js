@@ -168,6 +168,30 @@ const GlobalStyle = createGlobalStyle`
   .is-hidden{
     display:none;
   }
+
+  .swiper-container {
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    height: 100%;
+  }
+  
+  .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: content-box;
+    z-index: 1;
+  }
+  
+  .swiper-slide {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
   
 `;
 
