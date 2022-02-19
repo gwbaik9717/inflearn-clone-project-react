@@ -2,6 +2,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as All from "@fortawesome/free-solid-svg-icons";
 import NavbarItem from "./NavbarItem";
 import NavbarSearch from "./NavbarSearch";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import NavBarBtn from "./NavbarBtn";
+
+const StyledNavbarRight = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  .navbar-item {
+    padding: 8px;
+  }
+
+  .navbar-item a {
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #profile .icon {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+`;
 
 const NavbarRight = () => {
   const itemInfos = [
@@ -32,26 +57,26 @@ const NavbarRight = () => {
   ];
 
   return (
-    <div className="navbar-right">
+    <StyledNavbarRight className="navbar-right">
       <NavbarSearch />
 
-      {itemInfos.map(({ id, title, hasDropdown, icon }) => (
+      {itemInfos.map(({ id, title, hasDropdown, icon }, index) => (
         <NavbarItem
           key={id}
           title={title}
           hasDropdown={hasDropdown}
           icon={icon}
           id={id}
+          flexOrder={index}
         />
       ))}
 
-      <div className="navbar-item" id="recent-lecture">
-        <a href="#" className="btn">
-          <FontAwesomeIcon icon={All.faPencil} />
-          <span>최근강의</span>
-        </a>
-      </div>
-    </div>
+      <NavBarBtn
+        icon={<FontAwesomeIcon icon={All.faPencil} />}
+        btnText="최근강의"
+        btnBgColor="rgb(0, 196, 113)"
+      />
+    </StyledNavbarRight>
   );
 };
 

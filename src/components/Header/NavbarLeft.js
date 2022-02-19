@@ -1,4 +1,21 @@
 import NavbarItem from "./NavbarItem";
+import styled from "styled-components";
+
+const StyledNavbarLeft = styled.div`
+  display: flex;
+  align-items: center;
+
+  .navbar-item {
+    padding: 8px 14px 8px 14px;
+  }
+
+  .navbar-item a {
+    display: flex;
+    padding: 8px 8px;
+    height: 48px;
+    align-items: center;
+  }
+`;
 
 const NavbarLeft = () => {
   const itemInfos = [
@@ -10,11 +27,11 @@ const NavbarLeft = () => {
   ];
 
   return (
-    <div className="navbar-left">
+    <StyledNavbarLeft className="navbar-left">
       {itemInfos.map(({ title, hasDropdown }) => (
         <NavbarItem key={title} title={title} hasDropdown={hasDropdown} />
       ))}
-    </div>
+    </StyledNavbarLeft>
   );
 };
 

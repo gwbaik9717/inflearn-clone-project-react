@@ -1,3 +1,17 @@
+import styled from "styled-components";
+
+const StyledRatingStars = styled.div`
+  width: 4.5rem;
+  display: inline-flex;
+  justify-content: flex-start;
+
+  svg {
+    color: #fdcc11;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+`;
+
 const CourseRatingStars = ({ numStars }) => {
   const stars = [];
   for (let i = 0; i < 5; i++) {
@@ -22,7 +36,9 @@ const CourseRatingStars = ({ numStars }) => {
       </svg>
     );
   }
-  return <div className="rating-stars">{stars}</div>;
+  return (
+    <StyledRatingStars className="rating-stars">{stars}</StyledRatingStars>
+  );
 };
 
 export default CourseRatingStars;

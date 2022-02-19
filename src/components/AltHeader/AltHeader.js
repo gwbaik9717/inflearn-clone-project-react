@@ -1,5 +1,5 @@
 //import { useState } from "react";
-import DesktopContainer from "./DesktopContainer";
+import AltDesktopContainer from "./AltDesktopContainer";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <nav className="navbar">
-        <DesktopContainer /> {/* 추후 MobileContainer 추가 예정 */}
+        <AltDesktopContainer /> {/* 추후 MobileContainer 추가 예정 */}
       </nav>
     </StyledHeader>
   );

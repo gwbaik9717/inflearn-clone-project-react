@@ -5,6 +5,23 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import CourseCard from "./CourseCard";
+import styled from "styled-components";
+
+const StyledLists = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .swiper-container {
+    display: flex;
+    padding: 6px 0;
+    box-sizing: content-box;
+  }
+
+  .swiper-slide {
+    max-width: calc((100% - 8px) / 5);
+  }
+`;
 
 const CoursesLists = () => {
   const datas = [
@@ -101,7 +118,7 @@ const CoursesLists = () => {
   ];
 
   return (
-    <div className="courses-lists">
+    <StyledLists className="courses-lists">
       <Swiper
         modules={[Navigation]}
         className="swiper-container"
@@ -153,7 +170,7 @@ const CoursesLists = () => {
       <div className="swiper-next navBtn circle">
         <FontAwesomeIcon icon={All.faChevronRight} />
       </div>
-    </div>
+    </StyledLists>
   );
 };
 

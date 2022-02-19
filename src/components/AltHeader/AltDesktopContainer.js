@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import NavbarLeft from "./NavbarLeft";
-import NavbarRight from "./NavbarRight";
+import NavbarLeft from "../Header/NavbarLeft";
+import AltNavbarRight from "./AltNavbarRight";
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
     align-items: center;
   }
 
-  a svg {
+  svg {
     fill: #1dc078;
   }
 
@@ -65,7 +65,7 @@ const DesktopContainer = () => {
         </div>
         <div className="navbar-menu">
           <NavbarLeft />
-          <NavbarRight />
+          <AltNavbarRight />
         </div>
       </div>
     </StyledContainer>
