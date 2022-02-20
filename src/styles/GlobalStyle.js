@@ -166,7 +166,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .is-hidden{
-    display:none;
+    display:none !important;
   }
 
   .swiper-container {
