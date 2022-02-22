@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import RoadmapMainAccordionItem from "./RoadmapMainAccordionItem";
+import { useState } from "react";
 
 const StyledAccordion = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const StyledAccordion = styled.div`
     height: 50px;
     align-items: center;
     color: #595959;
+    cursor: pointer;
   }
 
   .accordion-header::after {
@@ -32,10 +34,11 @@ const StyledAccordion = styled.div`
     margin-left: 10.4px;
     box-sizing: border-box;
     border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    transform: ${({ isOpen }) => (isOpen ? "rotate(45deg)" : "rotate(-45deg)")};
     transform-origin: center;
     cursor: pointer;
     padding: 2.5px;
+    transition: transform .2s;
   }
 
     .accordion-body {
@@ -48,11 +51,19 @@ const StyledAccordion = styled.div`
 `;
 
 const RoadmapMainAccordion = ({ title, items, index }) => {
-  return (
-    <StyledAccordion index={index} className="accordion">
-      <div className="accordion-header toggle">{title}</div>
+  const [isOpen, setIsOpen] = useState(true);
 
-      <div className="accordion-body">
+  const toggleAccordion = () => {
+    setIsOpen((isOpen) => !isOpen);
+  };
+
+  return (
+    <StyledAccordion isOpen={isOpen} index={index} className="accordion">
+      <div className="accordion-header toggle" onClick={toggleAccordion}>
+        {title}
+      </div>
+
+      <div className={isOpen ? "accordion-body" : "is-hidden"}>
         {items.map((item) => (
           <RoadmapMainAccordionItem key={item} id={item} label={item} />
         ))}
