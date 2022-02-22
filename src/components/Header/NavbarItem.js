@@ -10,7 +10,7 @@ const StyledNavbarItem = styled.div`
   display: flex;
   order: ${(({ flexOrder }) => flexOrder) || 0};
 
-  ${({ hasDropdown, NippleSize }) =>
+  ${({ hasDropdown, NippleSize, nipplePosition }) =>
     hasDropdown &&
     `&:hover:before {
       display: block;
@@ -28,8 +28,7 @@ const StyledNavbarItem = styled.div`
       border-left: 1px solid rgb(0 10 18 / 10%);
       content: "";
       position: absolute;
-      top: 53px;
-      left: 30px;
+      ${nipplePosition || "top: 53px; left: 30px;"}
       transform: rotate(45deg);
       background-color: #fff;
       z-index: 5;
@@ -67,6 +66,7 @@ const NavbarItem = ({
       hasDropdown={hasDropdown}
       dropdownPosition={dropdownPosition}
       NippleSize={NippleSize}
+      nipplePosition={nipplePosition}
       flexOrder={flexOrder}
       className="navbar-item"
       id={icon ? id : null}

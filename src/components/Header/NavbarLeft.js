@@ -23,7 +23,7 @@ const NavbarLeft = () => {
       title: "강의",
       hasDropdown: true,
       dropdownPosition: "top: 60px; left: 0;",
-      nipplePosition: "left: 30px;",
+      nipplePosition: "top: 53px; left: 30px;",
       dropdownLv1: [
         "개발 · 프로그래밍",
         "보안 · 네트워크",
@@ -81,7 +81,7 @@ const NavbarLeft = () => {
       title: "커뮤니티",
       hasDropdown: true,
       dropdownPosition: "top: 60px; right: 0;",
-      nipplePosition: "left: 40px;",
+      nipplePosition: "top: 53px; left: 44px;",
       dropdownLv1: [
         "질문 & 답변",
         "자유주제",
@@ -94,8 +94,8 @@ const NavbarLeft = () => {
     {
       title: "인프런",
       hasDropdown: true,
-      nipplePosition: "left: 40px;",
       dropdownPosition: "top: 60px; right: 0;",
+      nipplePosition: "top: 53px; left: 38px;",
       dropdownLv1: ["기업 채용", "인프랩 채용"],
     },
   ];
@@ -109,6 +109,7 @@ const NavbarLeft = () => {
           dropdownLv1,
           dropdownLv2,
           dropdownPosition,
+          nipplePosition,
         }) => (
           <NavbarItem
             key={title}
@@ -117,6 +118,7 @@ const NavbarLeft = () => {
             dropdownLv1={dropdownLv1}
             dropdownLv2={dropdownLv2}
             dropdownPosition={dropdownPosition}
+            nipplePosition={nipplePosition}
           />
         )
       )}
