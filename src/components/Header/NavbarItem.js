@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useState } from "react";
+import DropdownMenuItem from "./DropdownMenuItem";
 
 const StyledNavbarItem = styled.div`
   color: #4a4a4a;
@@ -7,12 +9,64 @@ const StyledNavbarItem = styled.div`
   line-height: 1.5;
   display: flex;
   order: ${(({ flexOrder }) => flexOrder) || 0};
+
+  ${({ hasDropdown, NippleSize }) =>
+    hasDropdown &&
+    `&:hover:before {
+      display: block;
+    }
+
+    &:hover > .navbar-dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &::before {
+      width: ${NippleSize || 12}px;
+      height: ${NippleSize || 12}px;
+      border-top: 1px solid rgb(0 10 18 / 10%);
+      border-left: 1px solid rgb(0 10 18 / 10%);
+      content: "";
+      position: absolute;
+      top: 53px;
+      left: 30px;
+      transform: rotate(45deg);
+      background-color: #fff;
+      z-index: 5;
+      display: none;
+      pointer-events: none;
+    }`}
+
+  .navbar-dropdown {
+    position: absolute;
+    padding: 0.5rem 0;
+    width: 180px;
+    height: 410px;
+    box-shadow: 8px 5px 8px 1px rgb(0 10 18 / 10%), 0 0 0 1px rgb(0 10 18 / 10%);
+    background-color: #fff;
+    ${({ dropdownPosition }) => dropdownPosition || null};
+    opacity: 0;
+    pointer-events: none;
+  }
 `;
 
-const NavbarItem = ({ title, hasDropdown, icon, id, flexOrder }) => {
+const NavbarItem = ({
+  title,
+  hasDropdown,
+  dropdownPosition,
+  nipplePosition,
+  NippleSize,
+  dropdownLv1,
+  dropdownLv2,
+  icon,
+  id,
+  flexOrder,
+}) => {
   return (
     <StyledNavbarItem
-      icon={icon}
+      hasDropdown={hasDropdown}
+      dropdownPosition={dropdownPosition}
+      NippleSize={NippleSize}
       flexOrder={flexOrder}
       className="navbar-item"
       id={icon ? id : null}
@@ -20,7 +74,19 @@ const NavbarItem = ({ title, hasDropdown, icon, id, flexOrder }) => {
       <Link to={`/roadmap`}>
         <span className={icon ? "icon" : null}>{title ? title : icon}</span>
       </Link>
-      {/*hasDropdown ? :*/}
+
+      {dropdownLv1 ? (
+        <ul className="navbar-dropdown lv1">
+          {dropdownLv1.map((item, index) => (
+            <DropdownMenuItem
+              key={item}
+              item={item}
+              dropdownLv2={dropdownLv2}
+              index={index}
+            />
+          ))}
+        </ul>
+      ) : null}
     </StyledNavbarItem>
   );
 };
