@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import AltHeader from "../components/AltHeader/AltHeader";
 import Footer from "../components/Footer/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -180,12 +180,10 @@ const StyledFooter = styled.div`
   }
 `;
 
-let currentEmail = "";
-//let currentPassword = "";
-
 const Signup = () => {
   const [passwordFocused, setPasswordFocused] = useState(false);
 
+  const currentEmail = useRef("");
   const [isEmail, setIsEmail] = useState(true); // 최초 진입시 경고창 숨기기
   const [isEmailConfrimed, setIsEmailConfirmed] = useState(true); // 최초 진입시 경고창 숨기기
 
@@ -240,11 +238,11 @@ const Signup = () => {
   };
 
   const onChangeEmail = (event) => {
-    currentEmail = event.target.value;
+    currentEmail.current = event.target.value;
 
     const pattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
 
-    if (pattern.test(currentEmail)) {
+    if (pattern.test(currentEmail.current)) {
       setIsEmail(true);
     } else {
       setIsEmail(false);
@@ -252,7 +250,7 @@ const Signup = () => {
   };
 
   const onChangeEmailConfirm = (event) => {
-    if (event.target.value === currentEmail) {
+    if (event.target.value === currentEmail.current) {
       setIsEmailConfirmed(true);
     } else {
       setIsEmailConfirmed(false);
