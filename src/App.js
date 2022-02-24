@@ -2,6 +2,7 @@ import * as React from "react";
 import Home from "./routes/Home";
 import Roadmap from "./routes/Roadmap";
 import Signup from "./routes/Signup";
+import Mentor from "./routes/Mentor";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 /*import { Reset } from "styled-reset";*/
@@ -19,6 +20,10 @@ function App() {
 
           <Route path="/signup">
             <Signup />
+          </Route>
+
+          <Route path="/mentor">
+            <Mentor />
           </Route>
 
           <Route path="/">

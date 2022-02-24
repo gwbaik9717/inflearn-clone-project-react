@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   body {
-    font-family: Sans KR, -apple-system, "system-ui", BlinkMacSystemFont,
+    font-family: Noto Sans KR, -apple-system, "system-ui", BlinkMacSystemFont,
       Apple SD Gothic Neo, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif,
       Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica;
     font-weight: 400;
