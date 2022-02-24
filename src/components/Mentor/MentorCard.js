@@ -1,6 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as All from "@fortawesome/free-solid-svg-icons";
+import CloseX from "../../img/CloseX";
 
 const StyledCard = styled.div`
   background-color: #fff;
@@ -93,7 +95,7 @@ const StyledCard = styled.div`
     justfiy-content: flex-start;
   }
 
-  .btn {
+  .buttons .btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,16 +109,226 @@ const StyledCard = styled.div`
     margin-bottom: 8px;
   }
 
-  .btn: first-child {
+  .buttons .btn:first-child {
     border-right-width: 1px;
   }
 
-  .btn: last-child {
+  .buttons .btn:last-child {
     flex: 1 0 25%;
   }
 `;
 
-const MentorCard = ({ profile, title, name, rating }) => {
+const StyledApplyModal = styled.div`
+display: flex;
+flex-direction: column;
+align-items:center;
+justify-content: center;
+overflow:hidden;
+position: fixed;
+z-index:80;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+
+.dimmed{
+    position: absolute;
+    background: rgba(11,19,30,.37);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display:block;
+}
+
+.apply-mentoring-container{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 0;
+    overflow:hidden;
+    padding: 32px;
+    width: 500px;
+    max-height: 700px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.apply-mentoring-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.apply-mentoring-header{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    width: 100%;
+}
+
+.header-left{
+    
+}
+
+.header-left > h1{
+    margin-right: 8px;
+    color: #343a40;
+    font-size: 18px;
+    font-weight: 700;
+    line-height; 1.39;
+    letter-spacing: -.3px;
+}
+
+.header-right{
+
+    display: flex;
+}
+
+.header-right .btn{
+    
+}
+
+.header-right .btn:first-child {
+    margin-right: 6px;
+    width: 60px;
+}
+
+.header-right .btn:first-child > span:first-child{
+    margin-right: 4px;
+    font-size: 16px;
+    width: 16px;
+    height: 24px;
+}
+
+.header-right .btn:first-child > span:last-child{
+    line-height: 1.43;
+    letter-spacing: -.3px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3e4042;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+}
+
+.header-right .btn:last-child{
+
+
+
+}
+
+.apply-mentoring-body{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    margin: 16px 0 6px;
+    height: 100%;
+    font-size: 15px;
+    line-height: 1.47;
+    letter-spacing: -.3px;
+    color: #495057;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+
+.apply-mentoring-title{
+    margin-bottom: 1rem;
+    padding: .5rem;
+    background-color: #f8f9fa;
+}
+
+.apply-mentoring-title > h3{
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.apply-mentoring-desc{
+    position:relative;
+    overflow-y: hidden;
+    flex-direction: column;
+    height: 100%;
+}
+
+.apply-mentoring-desc::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom:0;
+    width:100%;
+    height: 27px;
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.5),#fff);
+}
+
+.apply-mentoring-desc > div{
+    overflow-y:auto;
+    height:100%;
+    position: relative;
+    font-size:15px;
+    line-height: 1.47;
+    letter-spacing: -.3px;
+}
+
+.apply-mentoring-info{
+    flex-shrink: 0;
+    padding-top: 13px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.47;
+    letter-spacing: -.3px;
+}
+
+.apply-mentoring-info p{
+    font-size: 16px;
+}
+
+.apply-mentoring-footer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.apply-mentoring-footer .btn{
+    width: 90px;
+    font-weight: 700;
+    border: 1px solid #00c471;
+    color: #fff;
+    background: #00c471;
+    border-radius: 4px;
+    padding: 0 12px;
+    height: 40px;
+    line-height: 1.43;
+    font-size: 14px;
+    letter-spacing: -.3px;
+}
+`;
+
+const MentorCard = ({
+  profile,
+  title,
+  desc,
+  name,
+  rating,
+  duration,
+  price,
+  studentNum,
+}) => {
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+
+  const openApplyModal = () => {
+    setIsApplyModalOpen(true);
+
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  const closeApplyModal = () => {
+    setIsApplyModalOpen(false);
+
+    document.body.style.overflow = "unset";
+  };
+
   return (
     <StyledCard className="mentor-card">
       <div className="card-body">
@@ -150,9 +362,65 @@ const MentorCard = ({ profile, title, name, rating }) => {
       <div className="card-bottom">
         <div className="buttons">
           <button className="btn">프로필</button>
-          <button className="btn">내용보기</button>
+          <button className="btn" onClick={openApplyModal}>
+            내용보기
+          </button>
         </div>
       </div>
+
+      {isApplyModalOpen && (
+        <StyledApplyModal
+          className="apply-mentoring-modal"
+          isApplyModalOpen={isApplyModalOpen}
+        >
+          <div className="dimmed"></div>
+          <div className="apply-mentoring-container">
+            <div className="apply-mentoring-wrapper">
+              <div className="apply-mentoring-header">
+                <div className="header-left">
+                  <h1>멘토링 소개</h1>
+                </div>
+                <div className="header-right">
+                  <div className="btn">
+                    <span className="icon">
+                      <FontAwesomeIcon icon={All.faShareNodes} />
+                    </span>
+                    <span>공유</span>
+                  </div>
+                  <div className="btn" onClick={closeApplyModal}>
+                    <CloseX />
+                  </div>
+                </div>
+              </div>
+              <div className="apply-mentoring-body">
+                <div className="apply-mentoring-title">
+                  <h3>{title}</h3>
+                </div>
+
+                <div className="apply-mentoring-desc">
+                  <div>{desc}</div>
+                </div>
+
+                <div className="apply-mentoring-info">
+                  <p>
+                    1회 멘토링 :
+                    <span className="duration">&nbsp;{duration}시간</span>
+                    &nbsp;/&nbsp;
+                    <span className="price">{price}원</span>
+                    &nbsp;/&nbsp;
+                    <span className="studentNum">{studentNum}명</span>
+                  </p>
+                </div>
+              </div>
+              <div className="apply-mentoring-footer">
+                <div className="btn">
+                  <span>신청하기</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </StyledApplyModal>
+      )}
     </StyledCard>
   );
 };
