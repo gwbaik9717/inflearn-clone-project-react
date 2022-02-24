@@ -303,6 +303,95 @@ bottom: 0;
 }
 `;
 
+const StyledReviewModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 80;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .dimmed {
+    position: absolute;
+    background: rgba(11, 19, 30, 0.37);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+  }
+
+  .review-mentoring-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    max-width: 520px;
+    height: 95%;
+  }
+
+  .review-mentoring-header {
+    position: relative;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 20px;
+    background-color: #fff;
+  }
+
+  .review-mentoring-header .btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.25rem;
+    padding: 1px 6px;
+  }
+
+  .apply-mentoring-body {
+    background: #fff;
+    height: 100%;
+    font-size: 15px;
+    line-height: 1.47;
+    letter-spacing: -0.3px;
+    color: #495057;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: 0;
+  }
+
+  .reviews {
+    color: #000a12;
+  }
+
+  .reviews h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8em;
+  }
+
+  .reviews p {
+    margin-bottom: 1em;
+    font-size: 16px;
+  }
+
+  .apply-mentoring-footer {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 20px;
+    position: relative;
+    background: #fff;
+  }
+`;
+
 const MentorCard = ({
   profile,
   title,
@@ -312,8 +401,19 @@ const MentorCard = ({
   duration,
   price,
   studentNum,
+  reviews,
 }) => {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+
+  const renderStars = (num) => {
+    let stars = "";
+    for (let i = 0; i < num; i++) {
+      stars += "⭐️";
+    }
+
+    return stars;
+  };
 
   const openApplyModal = () => {
     setIsApplyModalOpen(true);
@@ -329,6 +429,20 @@ const MentorCard = ({
     document.body.style.overflow = "unset";
   };
 
+  const openReviewModal = () => {
+    setIsReviewModalOpen(true);
+
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
+  const closeReviewModal = () => {
+    setIsReviewModalOpen(false);
+
+    document.body.style.overflow = "unset";
+  };
+
   return (
     <StyledCard className="mentor-card">
       <div className="card-body">
@@ -337,7 +451,7 @@ const MentorCard = ({
         </div>
 
         {rating && (
-          <div className="rating">
+          <div className="rating" onClick={openReviewModal}>
             <span className="icon">
               <FontAwesomeIcon icon={All.faStar} />
             </span>
@@ -420,6 +534,34 @@ const MentorCard = ({
             </div>
           </div>
         </StyledApplyModal>
+      )}
+
+      {rating && isReviewModalOpen && (
+        <StyledReviewModal
+          className="review-mentoring-modal"
+          isReviewModalOpen={isReviewModalOpen}
+        >
+          <div className="dimmed" onClick={closeReviewModal}></div>
+          <div className="review-mentoring-container">
+            <div className="review-mentoring-header">
+              <h1></h1>
+              <div className="btn" onClick={closeReviewModal}>
+                <FontAwesomeIcon icon={All.faTimes} />
+              </div>
+            </div>
+            <div className="apply-mentoring-body">
+              <div className="reviews">
+                {reviews.map((review) => (
+                  <>
+                    <h4>{renderStars(review.stars)}</h4>
+                    <p>{review.content}</p>
+                  </>
+                ))}
+              </div>
+            </div>
+            <div className="apply-mentoring-footer"></div>
+          </div>
+        </StyledReviewModal>
       )}
     </StyledCard>
   );
