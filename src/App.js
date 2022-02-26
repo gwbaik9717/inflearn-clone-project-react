@@ -3,36 +3,27 @@ import Home from "./routes/Home";
 import Roadmap from "./routes/Roadmap";
 import Signup from "./routes/Signup";
 import Mentor from "./routes/Mentor";
+import Mentors from "./routes/Mentors";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 /*import { Reset } from "styled-reset";*/
 import GlobalStyle from "./styles/GlobalStyle";
 import "./styles/Slider.css";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Switch>
-          <Route path="/roadmap">
-            <Roadmap />
-          </Route>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/roadmap" element={<Roadmap />} />
+          <Route path="/signup" element={<Signup />} />
 
-          <Route path="/signup">
-            <Signup />
-          </Route>
-
-          <Route path="/mentor">
-            <Mentor />
-          </Route>
-
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+          <Route path="/mentors/*" element={<Mentors />} />
+        </Routes>
+      </BrowserRouter>
       <GlobalStyle />
-    </div>
+    </>
   );
 }
 
