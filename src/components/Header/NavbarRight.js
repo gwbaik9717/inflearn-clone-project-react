@@ -9,15 +9,14 @@ import NavBarBtn from "./NavbarBtn";
 const StyledNavbarRight = styled.div`
   display: flex;
   align-items: center;
-  height: 100%;
 
   .navbar-item {
-    padding: 8px;
+    padding: 0.5rem;
   }
 
-  .navbar-item a {
+  .navbar-item > a {
     display: flex;
-    height: auto;
+    height: 48px;
     align-items: center;
     justify-content: center;
   }
@@ -30,22 +29,28 @@ const StyledNavbarRight = styled.div`
 
 const NavbarRight = () => {
   const itemInfos = [
-    { title: "지식공유참여", hasDropdown: false, icon: "", id: "share" },
+    { title: "지식공유참여", hasDropdown: false, id: "share" },
     {
       title: "",
       hasDropdown: true,
+      NippleSize: 23,
+      nipplePosition: "top: -12px; right: 15px;",
       icon: <FontAwesomeIcon icon={All.faShoppingCart} />,
       id: "cart",
     },
     {
       title: "",
       hasDropdown: true,
+      NippleSize: 23,
+      nipplePosition: "top: -12px; right: 15px;",
       icon: <FontAwesomeIcon icon={All.faBell} />,
       id: "message",
     },
     {
       title: "",
       hasDropdown: true,
+      NippleSize: 23,
+      nipplePosition: "top: -12px; right: 15px;",
       icon: (
         <img
           src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
@@ -60,16 +65,23 @@ const NavbarRight = () => {
     <StyledNavbarRight className="navbar-right">
       <NavbarSearch />
 
-      {itemInfos.map(({ id, title, hasDropdown, icon }, index) => (
-        <NavbarItem
-          key={id}
-          title={title}
-          hasDropdown={hasDropdown}
-          icon={icon}
-          id={id}
-          flexOrder={index}
-        />
-      ))}
+      {itemInfos.map(
+        (
+          { id, title, hasDropdown, NippleSize, nipplePosition, icon },
+          index
+        ) => (
+          <NavbarItem
+            key={id}
+            title={title}
+            hasDropdown={hasDropdown}
+            NippleSize={NippleSize}
+            nipplePosition={nipplePosition}
+            icon={icon}
+            id={id}
+            flexOrder={index}
+          />
+        )
+      )}
 
       <NavBarBtn
         icon={<FontAwesomeIcon icon={All.faPencil} />}

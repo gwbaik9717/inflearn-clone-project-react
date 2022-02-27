@@ -6,12 +6,12 @@ const StyledNavbarLeft = styled.div`
   align-items: center;
 
   .navbar-item {
-    padding: 8px 14px 8px 14px;
+    padding: 8px 0;
   }
 
   .navbar-item > a {
     display: flex;
-    padding: 8px 8px;
+    padding: 0.5rem 1rem;
     height: 48px;
     align-items: center;
   }

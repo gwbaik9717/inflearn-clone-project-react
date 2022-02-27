@@ -5,18 +5,18 @@ import styled from "styled-components";
 const StyledSearch = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 8px;
-  width: 12rem;
+  padding: 0.5rem 0.625rem;
   position: relative;
+  height: 64px;
+  width: 164px;
 
   input {
     padding: 5px 9px;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
     cursor: text;
+    width: 100%;
     height: 36px;
-    margin: 6px 0px;
   }
 
   input:focus {
@@ -28,7 +28,7 @@ const StyledSearch = styled.div`
     cursor: pointer;
     position: absolute;
     top: 20px;
-    right: 30px;
+    right: 20px;
   }
 `;
 
