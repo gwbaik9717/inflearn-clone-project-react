@@ -8,6 +8,16 @@ const StyledCourses = styled.section`
   .container {
     padding: 0 10px;
   }
+
+  @media (max-width: 768px) {
+    .container{
+      padding: 0 1rem;
+
+    }
+      
+    
+    }
+  }
 `;
 
 const Courses = ({ id, title }) => {

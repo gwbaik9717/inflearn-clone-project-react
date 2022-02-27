@@ -14,12 +14,56 @@ const StyledLists = styled.div`
 
   .swiper-container {
     display: flex;
-    padding: 6px 0;
-    box-sizing: content-box;
   }
 
-  .swiper-slide {
-    max-width: calc((100% - 8px) / 5);
+  .swiper-wrapper {
+    padding: 6px 0;
+  }
+
+  .swiper-slide:last-child {
+    margin-right: 0 !important;
+  }
+
+  @media (min-width: 1240px) {
+    .swiper-slide {
+      max-width: calc((100% - 8px) / 5);
+    }
+  }
+
+  @media (max-width: 1220px) {
+    .swiper-prev.navBtn{
+      left: -10px;
+      right: -10px;
+  }
+
+  @media (min-width: 1080px) and (max-width: 1239px) {
+    .swiper-slide {
+      max-width: calc((100% - 8px) / 4);
+    }
+  }
+
+  @media (min-width: 618px) and (max-width: 1079px) {
+    .swiper-slide {
+      max-width: calc((100% - 8px) / 3);
+    }
+  }
+
+  @media (max-width: 618px) {
+    .swiper-container {
+      overflow: visible;
+    }
+  }
+
+  @media (max-width: 617px) {
+    .swiper-slide {
+      max-width: calc((100% - 8px) / 2);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navBtn.circle {
+      display: none;
+    }
   }
 `;
 
@@ -122,12 +166,23 @@ const CoursesLists = () => {
       <Swiper
         modules={[Navigation]}
         className="swiper-container"
+        breakpoints={{
+          1240: {
+            slidesPerView: 5,
+          },
+          1080: {
+            slidesPerView: 4,
+          },
+          618: {
+            slidesPerView: 3,
+          },
+        }}
         navigation={{
           nextEl: ".courses .swiper-next",
           prevEl: ".courses .swiper-prev",
         }}
-        slidesPerView={5}
         spaceBetween={6}
+        slidesPerView={2}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >

@@ -121,7 +121,7 @@ const GlobalStyle = createGlobalStyle`
     color: #454545;
     font-size: 0.75rem;
     height: 2em;
-    padding: 0 0.75rem;
+    padding: 0 0.75em;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
   }
