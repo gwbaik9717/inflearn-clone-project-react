@@ -16,12 +16,25 @@ const StyledBanner = styled.div`
   }
 `;
 
-const SwiperSlideElements = ({ title, tags, details, img, bgColor }) => {
+const SwiperSlideElements = ({
+  title,
+  tags,
+  details1,
+  details2,
+  img,
+  mobileImg,
+  bgColor,
+}) => {
   return (
     <StyledBanner className="banner-bg">
       <div className="container">
-        <BannerLeft title={title} tags={tags} details={details} />
-        <BannerRight img={img} alt={title} />
+        <BannerLeft
+          title={title}
+          tags={tags}
+          details1={details1}
+          details2={details2}
+        />
+        <BannerRight img={img} mobileImg={mobileImg} alt={title} />
       </div>
     </StyledBanner>
   );

@@ -64,6 +64,10 @@ const StyledController = styled.div`
     box-shadow: rgb(206, 212, 218) 0px 0px 0px 1px inset;
     opacity: 1;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const PaginationController = ({ length }) => {
