@@ -23,9 +23,9 @@ const StyledSearch = styled.section`
   }
 
   .search-wrapper {
-    width: 580px;
+    max-width: 580px;
+    width: 100%;
     position: relative;
-    margin: 0 auto;
   }
 
   input {
@@ -69,6 +69,18 @@ const StyledSearch = styled.section`
   .icon {
     width: 16px;
     height: 16px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 48px 0 16px 0;
+
+    .container {
+      padding: 0 1rem;
+    }
+
+    .search-title {
+      font-size: 1.25rem;
+    }
   }
 `;
 
