@@ -11,6 +11,12 @@ const StyledCategory = styled.section`
     padding: 0 10px;
     overflow: hidden;
   }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+  }
 `;
 
 const Category = ({ title }) => {

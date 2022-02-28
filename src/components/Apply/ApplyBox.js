@@ -3,7 +3,7 @@ import * as All from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 const StyledBox = styled.div`
-  margin: 2px;
+  margin: 2px 2px 2px ${({ index }) => (index ? "8px" : "2px")};
   padding: 48px;
   width: 380px;
   height: 330px;
@@ -43,9 +43,9 @@ const StyledBox = styled.div`
   }
 `;
 
-const ApplyBox = ({ title, desc1, desc2, btn }) => {
+const ApplyBox = ({ title, desc1, desc2, btn, index }) => {
   return (
-    <StyledBox className="box">
+    <StyledBox index={index} className="box">
       <h3 className="box-title">{title}</h3>
       <div className="box-detail">
         {desc1}

@@ -192,7 +192,6 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
   }
   
-  
 `;
 
 export default GlobalStyle;

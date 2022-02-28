@@ -27,6 +27,10 @@ const StyledCuration = styled.section`
   }
 
   @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
     .curation-wrapper {
       width: 866px;
     }

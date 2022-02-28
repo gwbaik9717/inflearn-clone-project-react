@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ApplyHeader from "./ApplyHeader";
 import ApplyBox from "./ApplyBox";
 
 const StyledApply = styled.section`
@@ -10,10 +9,48 @@ const StyledApply = styled.section`
     padding: 0 10px;
   }
 
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .title {
+    color: #1e1e1e;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: #757575;
+    font-size: 0.9375rem;
+  }
+
+  .apply-container {
+    overflow-x: auto;
+  }
+
+  .apply-container::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+
   .apply-wrapper {
     display: inline-flex;
     justify-content: space-between;
-    width: 100%;
+    min-width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .apply-wrapper {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
   }
 `;
 
@@ -46,17 +83,23 @@ const Apply = () => {
   return (
     <StyledApply className="apply">
       <div className="container">
-        <ApplyHeader />
+        <div className="header">
+          <h2 className="title">다양한 서비스를 신청하세요.</h2>
+          <p className="apply-detail">
+            인프런의 지식공유자 ˙ 비즈니스 ˙ 대학생 신청방법에 대해 알아보세요.
+          </p>
+        </div>
 
         <div className="apply-container">
           <div className="apply-wrapper">
-            {datas.map(({ title, desc1, desc2, btn }) => (
+            {datas.map(({ title, desc1, desc2, btn }, index) => (
               <ApplyBox
                 key={title}
                 title={title}
                 desc1={desc1}
                 desc2={desc2}
                 btn={btn}
+                index={index}
               />
             ))}
           </div>
