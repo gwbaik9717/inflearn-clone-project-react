@@ -18,12 +18,12 @@ const StyledTagsContainer = styled.div`
 
   .tags .tag {
     padding: 10px 16px;
-    margin-right: 0 8px 8px 0;
+    margin: 0 8px 8px 0;
     white-space: nowrap;
     border-radius: 2px;
     background-color: #eee;
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 1.14;
     color: #333;
   }
 `;
