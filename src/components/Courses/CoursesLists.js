@@ -31,9 +31,15 @@ const StyledLists = styled.div`
   }
 
   @media (max-width: 1220px) {
-    .swiper-prev.navBtn{
+    .swiper-prev.navBtn {
       left: -10px;
+    }
+  }
+
+  @media (max-width: 1220px) {
+    .swiper-next.navBtn {
       right: -10px;
+    }
   }
 
   @media (min-width: 1080px) and (max-width: 1239px) {

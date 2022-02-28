@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const StyledCourses = styled.section`
   padding: 24px 0;
+  overflow: hidden;
 
   .container {
     padding: 0 10px;

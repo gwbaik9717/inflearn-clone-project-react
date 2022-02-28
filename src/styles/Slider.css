@@ -2,7 +2,7 @@
   margin-bottom: 16px;
 }
 
-.slider .header .title {
+.slider .title {
   color: #1e1e1e;
   font-size: 1.5rem;
   line-height: 1.5;
@@ -55,4 +55,14 @@
   bottom: 0;
   margin: auto 0;
   background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .slider .header {
+    margin-bottom: 12px !important;
+  }
+
+  .slider .title {
+    font-size: 1.25rem !important;
+  }
 }
