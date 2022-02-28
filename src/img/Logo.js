@@ -1,6 +1,6 @@
-export default () => (
+export default ({ width }) => (
   <svg
-    width="110"
+    width={width}
     id="main_logo"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 433 90"

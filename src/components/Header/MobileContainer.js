@@ -77,7 +77,7 @@ const MobileContainer = () => {
         </div>
         <div className="mobile-navbar-logo">
           <Link to={"/"}>
-            <Logo />
+            <Logo width={110} />
             <title>인프런 브랜드 로고</title>
           </Link>
         </div>

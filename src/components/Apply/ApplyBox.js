@@ -41,6 +41,12 @@ const StyledBox = styled.div`
     height: 1rem;
     font-size: 12px;
   }
+
+  @media (max-width: 768px) {
+    padding: 50px 24px;
+    width: 328px;
+    height: 282px;
+  }
 `;
 
 const ApplyBox = ({ title, desc1, desc2, btn, index }) => {

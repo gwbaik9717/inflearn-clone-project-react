@@ -11,6 +11,7 @@ const StyledApply = styled.section`
 
   .header {
     margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   .title {
@@ -48,8 +49,14 @@ const StyledApply = styled.section`
   }
 
   @media (max-width: 768px) {
+    padding: 32px 0;
+
     .container {
       padding: 0 1rem;
+    }
+
+    .title {
+      font-size: 1.25rem !important;
     }
   }
 `;

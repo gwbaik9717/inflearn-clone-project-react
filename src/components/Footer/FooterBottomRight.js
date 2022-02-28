@@ -1,7 +1,25 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Solids from "@fortawesome/free-solid-svg-icons";
 import * as Brands from "@fortawesome/free-brands-svg-icons";
-import SnsIcon from "./SnsIcon";
+import styled from "styled-components";
+
+const StyledBottomRight = styled.div`
+  margin-left: 20px;
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    background-color: #bdbdbd;
+    text-align: center;
+    line-height: 34px;
+    font-weight: 700;
+  }
+`;
 
 const FooterBottomRight = () => {
   const snses = [
@@ -13,11 +31,13 @@ const FooterBottomRight = () => {
   ];
 
   return (
-    <div className="footer-bottom-right">
+    <StyledBottomRight className="footer-bottom-right">
       {snses.map(({ id, icon }) => (
-        <SnsIcon key={id} id={id} icon={icon} />
+        <a href="#" id={id}>
+          {icon}
+        </a>
       ))}
-    </div>
+    </StyledBottomRight>
   );
 };
 
