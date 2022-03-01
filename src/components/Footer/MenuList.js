@@ -28,6 +28,10 @@ const StyledMenu = styled.div`
     line-height: 1.43;
   }
 
+  .menu-item:last-child {
+    margin-bottom: 17px;
+  }
+
   .toggle-btns {
     display: none;
   }
