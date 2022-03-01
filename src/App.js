@@ -9,10 +9,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
 import "./styles/Slider.css";
 import MobileBottomNavigation from "./components/MobileBottomNavigation/MobileBottomNavigation";
+import MobileRightAside from "./components/MobileRightAside/MobileRightAside";
 
 function App() {
   return (
     <>
+      <MobileBottomNavigation />
+      <MobileRightAside />
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -22,8 +26,6 @@ function App() {
           <Route path="/mentors/*" element={<Mentors />} />
         </Routes>
       </BrowserRouter>
-
-      <MobileBottomNavigation />
       <GlobalStyle />
     </>
   );

@@ -122,6 +122,10 @@ const StyledNav = styled.nav`
       width: 24px;
       height: 24px;
     }
+
+    .nav-title {
+      font-size: 0.75rem;
+    }
   }
 
   @media (max-width: 768px) {
@@ -132,10 +136,6 @@ const StyledNav = styled.nav`
 
     .more-item:nth-child(3n) {
       margin-right: 0;
-    }
-
-    .nav-title {
-      font-size: 0.75rem;
     }
   }
 `;
