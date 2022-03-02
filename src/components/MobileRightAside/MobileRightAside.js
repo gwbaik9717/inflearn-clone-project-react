@@ -4,6 +4,7 @@ import * as All from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setIsModalOpen } from "../Redux modules/toggleMobileModal";
+import { useEffect } from "react";
 
 const StyledAside = styled.div`
   display: none;
@@ -246,6 +247,17 @@ const StyledAside = styled.div`
   }
 `;
 
+const StyledBg = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 19, 30, 0.37);
+  z-index: 75;
+  display: ${({ isModalOpen }) => (isModalOpen ? "block" : "none")};
+`;
+
 const MobileRightAside = () => {
   const menuLists = [
     {
@@ -269,90 +281,108 @@ const MobileRightAside = () => {
   };
   const { isModalOpen } = useSelector((state) => state.toggleMobileModal);
 
+  useEffect(() => {
+    if (isModalOpen) {
+      if (typeof window != "undefined" && window.document) {
+        document.body.style.overflow = "hidden";
+      }
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isModalOpen]);
+
   return (
-    <StyledAside isModalOpen={isModalOpen} className="mobile-right-aside">
-      <div className="profile-modal">
-        <div className="modal-header">
-          <span className="close-btn" onClick={toggleMobileModal}>
-            <span className="icon">
-              <FontAwesomeIcon icon={All.faTimes} />
+    <>
+      <StyledBg
+        className="dimmed-bg"
+        onClick={toggleMobileModal}
+        isModalOpen={isModalOpen}
+      ></StyledBg>
+
+      <StyledAside isModalOpen={isModalOpen} className="mobile-right-aside">
+        <div className="profile-modal">
+          <div className="modal-header">
+            <span className="close-btn" onClick={toggleMobileModal}>
+              <span className="icon">
+                <FontAwesomeIcon icon={All.faTimes} />
+              </span>
             </span>
-          </span>
-          <a className="message-btn">
-            <span className="icon">
-              <FontAwesomeIcon icon={All.faBell} />
-            </span>
-          </a>
-        </div>
-        <div className="modal-info">
-          <div className="user-info">
-            <div className="info-left">
-              <div className="thumbnail">
-                <img
-                  src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
-                  alt="profile_img"
-                />
-                <div className="thumbnail-settings">설정</div>
+            <a className="message-btn">
+              <span className="icon">
+                <FontAwesomeIcon icon={All.faBell} />
+              </span>
+            </a>
+          </div>
+          <div className="modal-info">
+            <div className="user-info">
+              <div className="info-left">
+                <div className="thumbnail">
+                  <img
+                    src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
+                    alt="profile_img"
+                  />
+                  <div className="thumbnail-settings">설정</div>
+                </div>
+              </div>
+              <div className="info-right">
+                <a href="#">
+                  <div className="name">
+                    <FontAwesomeIcon icon={All.faHome} />
+                    백건우
+                  </div>
+                  <span className="icon">
+                    <FontAwesomeIcon icon={All.faChevronRight} />
+                  </span>
+                </a>
+                <div className="rank">학생</div>
               </div>
             </div>
-            <div className="info-right">
-              <a href="#">
-                <div className="name">
-                  <FontAwesomeIcon icon={All.faHome} />
-                  백건우
-                </div>
-                <span className="icon">
-                  <FontAwesomeIcon icon={All.faChevronRight} />
+            <div className="point-info">
+              <a href="#" className="coupon point-box">
+                <span className="title">쿠폰</span>
+                <span className="content">
+                  <span className="value">0</span>개
                 </span>
               </a>
-              <div className="rank">학생</div>
+              <a href="#" className="my-points point-box">
+                <span className="title">포인트</span>
+                <span className="content">
+                  <span className="value">0</span>잎
+                </span>
+              </a>
             </div>
           </div>
-          <div className="point-info">
-            <a href="#" className="coupon point-box">
-              <span className="title">쿠폰</span>
-              <span className="content">
-                <span className="value">0</span>개
-              </span>
-            </a>
-            <a href="#" className="my-points point-box">
-              <span className="title">포인트</span>
-              <span className="content">
-                <span className="value">0</span>잎
-              </span>
-            </a>
-          </div>
-        </div>
 
-        <div className="modal-menu">
-          <div className="menu-title">
-            <span>학생</span>
-          </div>
-          <div className="list-content">
-            <div className="menu-lists">
-              {menuLists.map(({ title, icon }) => (
-                <div className="menu-list">
-                  <a href="#">
-                    <span className="icon">{icon}</span>
-                    <span className="menu-title">{title}</span>
-                  </a>
-                </div>
-              ))}
+          <div className="modal-menu">
+            <div className="menu-title">
+              <span>학생</span>
+            </div>
+            <div className="list-content">
+              <div className="menu-lists">
+                {menuLists.map(({ title, icon }) => (
+                  <div className="menu-list">
+                    <a href="#">
+                      <span className="icon">{icon}</span>
+                      <span className="menu-title">{title}</span>
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="modal-footer">
-          <span className="logout">로그아웃</span>
-          <span className="cs">
-            <a href="#">고객센터</a>
-            <span className="icon">
-              <FontAwesomeIcon icon={All.faChevronRight} />
+          <div className="modal-footer">
+            <span className="logout">로그아웃</span>
+            <span className="cs">
+              <a href="#">고객센터</a>
+              <span className="icon">
+                <FontAwesomeIcon icon={All.faChevronRight} />
+              </span>
             </span>
-          </span>
+          </div>
         </div>
-      </div>
-    </StyledAside>
+      </StyledAside>
+    </>
   );
 };
 
