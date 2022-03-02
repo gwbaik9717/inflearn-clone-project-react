@@ -13,6 +13,12 @@ const StyledApply = styled.section`
     padding: 96px 0;
     max-width: 1152px;
   }
+
+  @media (max-width: 768px) {
+    .wrapper {
+      padding: 28px 0;
+    }
+  }
 `;
 
 const RoadmapApply = () => {

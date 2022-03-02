@@ -25,6 +25,16 @@ const StyledApplyCard = styled.div`
     padding: 8px 16px;
     line-height: 1.5;
   }
+
+  @media (max-width: 7698px) {
+    .apply-title {
+      display: none;
+    }
+
+    .apply-detail {
+      display: none;
+    }
+  }
 `;
 
 const RoadmapApplyCard = ({ title, detail1, detail2, btn }) => {

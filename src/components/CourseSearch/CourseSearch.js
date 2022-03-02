@@ -9,11 +9,18 @@ import Dot from "../../img/Dot";
 import CourseCard from "../Courses/CourseCard";
 import CourseSearchAccordion from "./CourseSearchAccordion";
 import ChevronRight from "../../img/ChevronRight";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const StyledCourses = styled.section`
   .container {
     padding: 2rem 0;
     background: #fff;
+  }
+
+  .column-left {
+    width: calc(100% / 6);
+    flex: none;
   }
 
   .accordion {
@@ -387,14 +394,21 @@ const StyledCourses = styled.section`
     }
   }
 
+  @media (max-width: 1024px) {
+    .column-left {
+      display: none;
+    }
+  }
+
   @media (min-width: 769px) {
     .columns {
       display: flex;
     }
+  }
 
-    .column-left {
-      width: calc(100% / 6);
-      flex: none;
+  @media (max-width: 768px) {
+    .pagination-cover {
+      display: none;
     }
   }
 `;
@@ -570,6 +584,14 @@ const CourseSearch = () => {
     },
   ];
 
+  const [searchKeyword, setSearchKeyword] = useState(course);
+
+  let navigate = useNavigate();
+
+  const onChangeSearchKeyword = (e) => {
+    setSearchKeyword(e.target.value);
+  };
+
   return (
     <>
       <Header />
@@ -592,6 +614,8 @@ const CourseSearch = () => {
                 <div className="courses-header">
                   <div className="search">
                     <input
+                      value={searchKeyword}
+                      onChange={onChangeSearchKeyword}
                       className="search-input"
                       placeholder="강의 검색하기"
                       type="text"
