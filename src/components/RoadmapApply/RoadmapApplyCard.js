@@ -26,7 +26,7 @@ const StyledApplyCard = styled.div`
     line-height: 1.5;
   }
 
-  @media (max-width: 7698px) {
+  @media (max-width: 768px) {
     .apply-title {
       display: none;
     }

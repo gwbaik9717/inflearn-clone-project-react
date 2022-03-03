@@ -585,11 +585,26 @@ const CourseSearch = () => {
   ];
 
   const [searchKeyword, setSearchKeyword] = useState(course);
+  const [searchSkills, setSearchSkills] = useState("");
 
   let navigate = useNavigate();
 
   const onChangeSearchKeyword = (e) => {
     setSearchKeyword(e.target.value);
+  };
+
+  const onChangeSearchSkills = (e) => {
+    setSearchSkills(e.target.value);
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      goSearchPage();
+    }
+  };
+
+  const goSearchPage = () => {
+    navigate(`/courses/${searchKeyword}`);
   };
 
   return (
@@ -616,6 +631,7 @@ const CourseSearch = () => {
                     <input
                       value={searchKeyword}
                       onChange={onChangeSearchKeyword}
+                      onKeyPress={onKeyPress}
                       className="search-input"
                       placeholder="강의 검색하기"
                       type="text"
@@ -636,7 +652,12 @@ const CourseSearch = () => {
                   <div className="tags">
                     <div className="search-skills">
                       <div className="search-box">
-                        <input type="text" placeholder="기술검색" />
+                        <input
+                          value={searchSkills}
+                          type="text"
+                          placeholder="기술검색"
+                          onChange={onChangeSearchSkills}
+                        />
                       </div>
                       <div className="btn-wrapper">
                         <div className="btn">
@@ -648,11 +669,19 @@ const CourseSearch = () => {
                     </div>
 
                     <div className="skill-buttons">
-                      {buttons.map((button) => (
-                        <button className="skill-button" key={button}>
-                          {button}
-                        </button>
-                      ))}
+                      {buttons.map((button) =>
+                        searchSkills ? (
+                          button.toLowerCase().includes(searchSkills) && (
+                            <button className="skill-button" key={button}>
+                              {button}
+                            </button>
+                          )
+                        ) : (
+                          <button className="skill-button" key={button}>
+                            {button}
+                          </button>
+                        )
+                      )}
                       <button className="skill-button">
                         <FontAwesomeIcon icon={All.faEllipsis} />
                       </button>
@@ -712,19 +741,20 @@ const CourseSearch = () => {
                           level,
                           fields,
                           skills,
-                        }) => (
-                          <CourseCard
-                            title={title}
-                            tags={tags}
-                            author={author}
-                            img={img}
-                            reviewCount={reviewCount}
-                            price={price}
-                            level={level}
-                            fields={fields}
-                            skills={skills}
-                          />
-                        )
+                        }) =>
+                          title.toLowerCase().includes(course) && (
+                            <CourseCard
+                              title={title}
+                              tags={tags}
+                              author={author}
+                              img={img}
+                              reviewCount={reviewCount}
+                              price={price}
+                              level={level}
+                              fields={fields}
+                              skills={skills}
+                            />
+                          )
                       )}
                     </div>
                   </div>
