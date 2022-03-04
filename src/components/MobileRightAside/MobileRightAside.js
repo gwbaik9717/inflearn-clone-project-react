@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as All from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsRightModalOpen } from "../Redux modules/toggleMobileModal";
+import { setLoggedIn } from "../Redux modules/setLoginInfo";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const StyledAside = styled.div`
   display: none;
@@ -214,6 +216,10 @@ const StyledAside = styled.div`
     color: #495057;
   }
 
+  .modal-footer .logout {
+    cursor: pointer;
+  }
+
   .cs {
     display: inline-flex;
     align-items: center;
@@ -274,12 +280,17 @@ const MobileRightAside = () => {
     },
     { title: "더보기", icon: <FontAwesomeIcon icon={All.faEllipsisH} /> },
   ];
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const toggleMobileModal = () => {
     dispatch(setIsRightModalOpen());
   };
   const { isRightModalOpen } = useSelector((state) => state.toggleMobileModal);
+  const goHome = () => {
+    dispatch(setLoggedIn());
+    toggleMobileModal();
+    navigate(`/`);
+  };
 
   useEffect(() => {
     if (isRightModalOpen) {
@@ -375,7 +386,9 @@ const MobileRightAside = () => {
           </div>
 
           <div className="modal-footer">
-            <span className="logout">로그아웃</span>
+            <span className="logout" onClick={goHome}>
+              로그아웃
+            </span>
             <span className="cs">
               <a href="#">고객센터</a>
               <span className="icon">
