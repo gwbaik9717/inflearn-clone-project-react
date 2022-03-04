@@ -10,11 +10,13 @@ import GlobalStyle from "./styles/GlobalStyle";
 import "./styles/Slider.css";
 import MobileBottomNavigation from "./components/MobileBottomNavigation/MobileBottomNavigation";
 import MobileRightAside from "./components/MobileRightAside/MobileRightAside";
+import MobileLeftAside from "./components/MobileLeftAside/MobileLeftAside";
 
 function App() {
   return (
     <>
       <MobileBottomNavigation />
+      <MobileLeftAside />
       <MobileRightAside />
 
       <BrowserRouter>

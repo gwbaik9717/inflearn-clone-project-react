@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as All from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { setIsModalOpen } from "../Redux modules/toggleMobileModal";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsRightModalOpen } from "../Redux modules/toggleMobileModal";
 import { useEffect } from "react";
 
 const StyledAside = styled.div`
@@ -243,7 +242,8 @@ const StyledAside = styled.div`
     z-index: 76;
     transition: transform 0.3s ease;
     background-color: #fff;
-    transform: ${({ isModalOpen }) => isModalOpen && "translateX(-316px)"};
+    transform: ${({ isRightModalOpen }) =>
+      isRightModalOpen && "translateX(-316px)"};
   }
 `;
 
@@ -255,7 +255,7 @@ const StyledBg = styled.div`
   bottom: 0;
   background-color: rgba(11, 19, 30, 0.37);
   z-index: 75;
-  display: ${({ isModalOpen }) => (isModalOpen ? "block" : "none")};
+  display: ${({ isRightModalOpen }) => (isRightModalOpen ? "block" : "none")};
 `;
 
 const MobileRightAside = () => {
@@ -277,29 +277,32 @@ const MobileRightAside = () => {
 
   const dispatch = useDispatch();
   const toggleMobileModal = () => {
-    dispatch(setIsModalOpen());
+    dispatch(setIsRightModalOpen());
   };
-  const { isModalOpen } = useSelector((state) => state.toggleMobileModal);
+  const { isRightModalOpen } = useSelector((state) => state.toggleMobileModal);
 
   useEffect(() => {
-    if (isModalOpen) {
+    if (isRightModalOpen) {
       if (typeof window != "undefined" && window.document) {
         document.body.style.overflow = "hidden";
       }
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [isModalOpen]);
+  }, [isRightModalOpen]);
 
   return (
     <>
       <StyledBg
         className="dimmed-bg"
         onClick={toggleMobileModal}
-        isModalOpen={isModalOpen}
+        isRightModalOpen={isRightModalOpen}
       ></StyledBg>
 
-      <StyledAside isModalOpen={isModalOpen} className="mobile-right-aside">
+      <StyledAside
+        isRightModalOpen={isRightModalOpen}
+        className="mobile-right-aside"
+      >
         <div className="profile-modal">
           <div className="modal-header">
             <span className="close-btn" onClick={toggleMobileModal}>

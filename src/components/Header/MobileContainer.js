@@ -5,7 +5,10 @@ import Logo from "../../img/Logo";
 import MobileHeaderLeft from "../../img/MobileHeaderLeft";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setIsModalOpen } from "../Redux modules/toggleMobileModal";
+import {
+  setIsRightModalOpen,
+  setIsLeftModalOpen,
+} from "../Redux modules/toggleMobileModal";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -70,15 +73,18 @@ const StyledContainer = styled.div`
 
 const MobileContainer = () => {
   const dispatch = useDispatch();
-  const toggleMobileModal = () => {
-    dispatch(setIsModalOpen());
+  const toggleMobileRightModal = () => {
+    dispatch(setIsRightModalOpen());
+  };
+  const toggleMobileLeftModal = () => {
+    dispatch(setIsLeftModalOpen());
   };
 
   return (
     <StyledContainer className="container mobile_container">
       <div className="content">
         <div className="mobile-navbar-left">
-          <span class="btn">
+          <span class="btn" onClick={toggleMobileLeftModal}>
             <MobileHeaderLeft />
           </span>
         </div>
@@ -95,7 +101,7 @@ const MobileContainer = () => {
             </div>
           </Link>
 
-          <span className="profile" onClick={toggleMobileModal}>
+          <span className="profile" onClick={toggleMobileRightModal}>
             <span className="profile_cover">
               <img
                 src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
