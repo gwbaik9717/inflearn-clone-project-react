@@ -1,4 +1,5 @@
 import Header from "../components/Header/Header";
+import AltHeader from "../components/AltHeader/AltHeader";
 import Footer from "../components/Footer/Footer";
 import Hero from "../components/Hero/Hero";
 import Search from "../components/Search";
@@ -7,11 +8,16 @@ import Courses from "../components/Courses/Courses";
 import Category from "../components/Category/Category";
 import Curation from "../components/Curation/Curation";
 import Apply from "../components/Apply/Apply";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const { isLoggedIn } = useSelector((state) => state.setLoginInfo);
+  console.log(isLoggedIn);
+
   return (
     <div>
-      <Header />
+      {isLoggedIn ? <Header /> : <AltHeader />}
+
       <main>
         <Hero />
         <Search />

@@ -4,6 +4,9 @@ import Footer from "../components/Footer/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SignupSns from "../components/Signup/SignupSns";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { setLoggedIn } from "../components/Redux modules/setLoginInfo";
 
 const StyledSignup = styled.section`
   margin: 64px auto auto;
@@ -181,6 +184,8 @@ const StyledFooter = styled.div`
 `;
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [passwordFocused, setPasswordFocused] = useState(false);
 
   const currentEmail = useRef("");
@@ -192,6 +197,7 @@ const Signup = () => {
   const [isPassword2, setIsPassword2] = useState(false);
   const [isPassword3, setIsPassword3] = useState(false);
   const [isPasswordConfirmed, setIsPasswordConfirmed] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
 
   const sayings = [
     "나의 온라인 사수, 인프런",
@@ -200,10 +206,9 @@ const Signup = () => {
   ];
 
   useEffect(() => {
-    console.log(currentPassword);
     const guide1 =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{3,100}$/; // 영문 대소문자, 숫자, 특수문자
-    const guide2 = /^[a-zA-Z0-9]{12,32}$/; // 최소 12자 이상, 32자 이하 공백제외
+    const guide2 = /^[a-zA-Z0-9`~!@#$%^&*|'\";:\/?]{12,32}$/; // 최소 12자 이상, 32자 이하 공백제외
     const guide3 = /(\w)\1\1/; // 같은 숫자, 문자 3개이상 사용
 
     if (guide1.test(currentPassword)) {
@@ -254,6 +259,30 @@ const Signup = () => {
       setIsEmailConfirmed(true);
     } else {
       setIsEmailConfirmed(false);
+    }
+  };
+
+  const toggleAgree = () => {
+    setIsChecked((current) => !current);
+  };
+
+  const setUserLoggedIn = () => {
+    dispatch(setLoggedIn());
+  };
+
+  const goHome = () => {
+    if (
+      isEmail &&
+      isEmailConfrimed &&
+      isPassword1 &&
+      isPassword2 &&
+      isPassword2 &&
+      isPassword3 &&
+      isPasswordConfirmed &&
+      isChecked
+    ) {
+      setUserLoggedIn();
+      navigate(`/`);
     }
   };
 
@@ -442,7 +471,9 @@ const Signup = () => {
               </div>
             </form>
 
-            <button className="btn">가입하기</button>
+            <button className="btn" onClick={goHome}>
+              가입하기
+            </button>
 
             <StyledFooter className="form-footer">
               <span className="footer-policy">
@@ -458,7 +489,11 @@ const Signup = () => {
                 >
                   인프런의 할인 및 유용한 소식을 받아볼래요.
                 </label>
-                <input id="allow-marketing" type="checkbox" />
+                <input
+                  id="allow-marketing"
+                  type="checkbox"
+                  onClick={toggleAgree}
+                />
               </p>
             </StyledFooter>
 

@@ -1,6 +1,7 @@
-//import { useState } from "react";
 import AltDesktopContainer from "./AltDesktopContainer";
+import AltMobileContainer from "./AltMobileContainer";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 const StyledHeader = styled.header`
   position: sticky;
@@ -13,13 +14,21 @@ const StyledHeader = styled.header`
     height: 64px;
     box-shadow: 0 2px 4px 0 hsl(0deg 0% 81% / 50%);
   }
+
+  @media (max-width: 1024px) {
+    .navbar {
+      height: 50px !important;
+    }
+  }
 `;
 
 const Header = () => {
+  const isMedium = useMediaQuery({ maxWidth: 1024 });
+
   return (
     <StyledHeader>
       <nav className="navbar">
-        <AltDesktopContainer /> {/* 추후 MobileContainer 추가 예정 */}
+        {isMedium ? <AltMobileContainer /> : <AltDesktopContainer />}
       </nav>
     </StyledHeader>
   );
