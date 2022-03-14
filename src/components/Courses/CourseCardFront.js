@@ -2,6 +2,45 @@ import CourseTag from "./CourseTag";
 import styled from "styled-components";
 import CourseStar from "../../img/CourseStar";
 
+const CourseCardFront = ({ title, tags, author, img, reviewCount, price }) => {
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      stars.push(<CourseStar key={i} />);
+    }
+
+    return stars;
+  };
+
+  return (
+    <StyledCardFront href="#" className="course-card--front">
+      <div className="card-image">
+        <img src={img} alt={title} />
+      </div>
+
+      <div className="card-detail">
+        <div className="course-title">{title}</div>
+        <div className="course-instructor">{author}</div>
+        <div className="course-rating">
+          <StyledRatingStars className="rating-stars">
+            {renderStars()}
+          </StyledRatingStars>
+          <span className="review-count">({reviewCount})</span>
+        </div>
+        <div className="course-price">
+          <span>{price}</span>
+        </div>
+
+        <div className="course-tags tags">
+          {tags.map((tag) => (
+            <CourseTag key={tag} tag={tag} />
+          ))}
+        </div>
+      </div>
+    </StyledCardFront>
+  );
+};
+
 const StyledCardFront = styled.a`
   .card-detail {
     padding: 0.5rem 0;
@@ -105,44 +144,5 @@ const StyledRatingStars = styled.div`
     }
   }
 `;
-
-const CourseCardFront = ({ title, tags, author, img, reviewCount, price }) => {
-  const renderStars = () => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(<CourseStar key={i} />);
-    }
-
-    return stars;
-  };
-
-  return (
-    <StyledCardFront href="#" className="course-card--front">
-      <div className="card-image">
-        <img src={img} alt={title} />
-      </div>
-
-      <div className="card-detail">
-        <div className="course-title">{title}</div>
-        <div className="course-instructor">{author}</div>
-        <div className="course-rating">
-          <StyledRatingStars className="rating-stars">
-            {renderStars()}
-          </StyledRatingStars>
-          <span className="review-count">({reviewCount})</span>
-        </div>
-        <div className="course-price">
-          <span>{price}</span>
-        </div>
-
-        <div className="course-tags tags">
-          {tags.map((tag) => (
-            <CourseTag key={tag} tag={tag} />
-          ))}
-        </div>
-      </div>
-    </StyledCardFront>
-  );
-};
 
 export default CourseCardFront;

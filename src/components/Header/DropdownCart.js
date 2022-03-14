@@ -2,6 +2,72 @@ import styled from "styled-components";
 import { useState } from "react";
 import DropdownCartItem from "./DropdownCartItem";
 import { Switch } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { courseData } from "../../data/dummydatas";
+
+const DropdownCart = () => {
+  const { cart, wishlist } = useSelector((state) => state.setLoginInfo);
+
+  const [isWishList, setIsWishList] = useState(false);
+  const SwitchToCart = () => {
+    setIsWishList(false);
+  };
+
+  const SwitchToWishList = () => {
+    setIsWishList(true);
+  };
+
+  console.log(wishlist);
+
+  return (
+    <StyledCart isWishList={isWishList} className="cart-dropdown">
+      <div className="cart-container">
+        <div className="header">
+          <span class="tab-menu" onClick={SwitchToCart}>
+            수강바구니
+          </span>
+          <span class="tab-menu" onClick={SwitchToWishList}>
+            위시리스트
+          </span>
+        </div>
+        <div className="main-content">
+          <div className="lecture-container">
+            {isWishList
+              ? wishlist.map((courseID) => {
+                  const [{ title, price, img }] = courseData.filter(
+                    ({ id }) => id === courseID
+                  );
+                  return (
+                    <DropdownCartItem
+                      key={title}
+                      title={title}
+                      price={price}
+                      thumbnail={img}
+                    />
+                  );
+                })
+              : cart.map((courseID) => {
+                  const [{ title, price, img }] = courseData.filter(
+                    ({ id }) => id === courseID
+                  );
+                  return (
+                    <DropdownCartItem
+                      key={title}
+                      title={title}
+                      price={price}
+                      thumbnail={img}
+                    />
+                  );
+                })}
+          </div>
+          <div className="btn">
+            {isWishList ? "위시 리스트로 이동" : "수강 바구니로 이동"}
+          </div>
+        </div>
+      </div>
+    </StyledCart>
+  );
+};
 
 const StyledCart = styled.div`
   position: absolute;
@@ -34,12 +100,12 @@ const StyledCart = styled.div`
     text-align: center;
   }
 
-  .tab-menu: first-of-type {
+  .tab-menu:first-of-type {
     border-bottom: ${({ isWishList }) =>
       isWishList ? "2px solid #e9ecef" : "2px solid #00c471"};
   }
 
-  .tab-menu: last-of-type {
+  .tab-menu:last-of-type {
     border-bottom: ${({ isWishList }) =>
       isWishList ? "2px solid #00c471" : "2px solid #e9ecef"};
   }
@@ -49,16 +115,18 @@ const StyledCart = styled.div`
     flex-direction: column;
     padding: 16px;
     height: 100%;
+    height: 0;
+    flex: 1 1 auto;
   }
 
   .lecture-container {
     overflow-y: auto;
     margin-bottom: 8px;
     flex: 1 1 auto;
+    height: 0;
   }
 
   .btn {
-    background-color: #00c471;
     background-color: ${({ isWishList }) =>
       isWishList ? "#FF7867" : "#00c471"};
     color: #fff;
@@ -68,57 +136,5 @@ const StyledCart = styled.div`
     font-size: 1rem;
   }
 `;
-
-const DropdownCart = () => {
-  const datas = [
-    {
-      title: "코딩으로 학습하는 리팩토링",
-      price: "₩77,000",
-      thumbnail:
-        "https://cdn.inflearn.com/public/courses/328348/cover/b0523a0a-b813-4ba4-afd3-58bfa12904fb/328348-eng.png",
-    },
-    {
-      title: "문제로 배우는 C언어",
-      price: "₩33,000",
-      thumbnail: "https://cdn.inflearn.com/wp-content/uploads/ktw_new2.jpg",
-    },
-  ];
-  const [isWishList, setIsWishList] = useState(false);
-  const SwitchToCart = () => {
-    setIsWishList(false);
-  };
-
-  const SwitchToWishList = () => {
-    setIsWishList(true);
-  };
-
-  return (
-    <StyledCart isWishList={isWishList} className="cart-dropdown">
-      <div className="cart-container">
-        <div className="header">
-          <span class="tab-menu" onClick={SwitchToCart}>
-            수강바구니
-          </span>
-          <span class="tab-menu" onClick={SwitchToWishList}>
-            위시리스트
-          </span>
-        </div>
-        <div className="main-content">
-          <div className="lecture-container">
-            {datas.map(({ title, price, thumbnail }) => (
-              <DropdownCartItem
-                key={title}
-                title={title}
-                price={price}
-                thumbnail={thumbnail}
-              />
-            ))}
-          </div>
-          <div className="btn">수강 바구니로 이동</div>
-        </div>
-      </div>
-    </StyledCart>
-  );
-};
 
 export default DropdownCart;

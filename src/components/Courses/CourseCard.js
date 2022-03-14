@@ -2,16 +2,8 @@ import CourseCardFront from "./CourseCardFront";
 import CourseCardBack from "./CourseCardBack";
 import styled from "styled-components";
 
-const StyledCard = styled.div`
-  height: 100%;
-
-  .course-card--front:hover + .course-card--back {
-    pointer-events: none;
-    display: block;
-  }
-`;
-
 const CourseCard = ({
+  id,
   title,
   tags,
   author,
@@ -33,6 +25,7 @@ const CourseCard = ({
         price={price}
       />
       <CourseCardBack
+        id={id}
         title={title}
         level={level}
         fields={fields}
@@ -41,5 +34,14 @@ const CourseCard = ({
     </StyledCard>
   );
 };
+
+const StyledCard = styled.div`
+  height: 100%;
+
+  &:hover .course-card--back {
+    display: block;
+    cursor: pointer;
+  }
+`;
 
 export default CourseCard;

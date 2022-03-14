@@ -2,6 +2,64 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState } from "react";
 import DropdownMenuItem from "./DropdownMenuItem";
+import DropdownCart from "./DropdownCart";
+
+const NavbarItem = ({
+  title,
+  hasDropdown,
+  dropdownPosition,
+  nipplePosition,
+  NippleSize,
+  dropdownLv1,
+  dropdownLv2,
+  icon,
+  id,
+  flexOrder,
+}) => {
+  const switchDropdownMenu = () => {
+    switch (id) {
+      case "cart":
+        return <DropdownCart />;
+      case "message":
+        return "";
+      case "profile":
+        return "";
+      default:
+        return (
+          dropdownLv1 && (
+            <ul className="navbar-dropdown lv1">
+              {dropdownLv1.map((item, index) => (
+                <DropdownMenuItem
+                  key={item}
+                  item={item}
+                  dropdownLv2={dropdownLv2}
+                  index={index}
+                />
+              ))}
+            </ul>
+          )
+        );
+    }
+  };
+
+  return (
+    <StyledNavbarItem
+      hasDropdown={hasDropdown}
+      dropdownPosition={dropdownPosition}
+      NippleSize={NippleSize}
+      nipplePosition={nipplePosition}
+      flexOrder={flexOrder}
+      className="navbar-item"
+      id={icon ? id : null}
+    >
+      <Link to={`/roadmap`}>
+        <span className={icon ? "icon" : null}>{title ? title : icon}</span>
+      </Link>
+
+      {switchDropdownMenu()}
+    </StyledNavbarItem>
+  );
+};
 
 const StyledNavbarItem = styled.div`
   color: #4a4a4a;
@@ -21,6 +79,10 @@ const StyledNavbarItem = styled.div`
       pointer-events: auto;
     }
 
+    &:hover > .cart-dropdown{
+      display:block;
+    }
+
     &::before {
       width: ${NippleSize || 12}px;
       height: ${NippleSize || 12}px;
@@ -31,9 +93,10 @@ const StyledNavbarItem = styled.div`
       ${nipplePosition || "top: 53px; left: 30px;"}
       transform: rotate(45deg);
       background-color: #fff;
-      z-index: 5;
+      z-index: 50;
       display: none;
       pointer-events: none;
+  
     }`}
 
   .navbar-dropdown {
@@ -46,49 +109,8 @@ const StyledNavbarItem = styled.div`
     ${({ dropdownPosition }) => dropdownPosition || null};
     opacity: 0;
     pointer-events: none;
+    color: #4a4a4a;
   }
 `;
-
-const NavbarItem = ({
-  title,
-  hasDropdown,
-  dropdownPosition,
-  nipplePosition,
-  NippleSize,
-  dropdownLv1,
-  dropdownLv2,
-  icon,
-  id,
-  flexOrder,
-}) => {
-  return (
-    <StyledNavbarItem
-      hasDropdown={hasDropdown}
-      dropdownPosition={dropdownPosition}
-      NippleSize={NippleSize}
-      nipplePosition={nipplePosition}
-      flexOrder={flexOrder}
-      className="navbar-item"
-      id={icon ? id : null}
-    >
-      <Link to={`/roadmap`}>
-        <span className={icon ? "icon" : null}>{title ? title : icon}</span>
-      </Link>
-
-      {dropdownLv1 ? (
-        <ul className="navbar-dropdown lv1">
-          {dropdownLv1.map((item, index) => (
-            <DropdownMenuItem
-              key={item}
-              item={item}
-              dropdownLv2={dropdownLv2}
-              index={index}
-            />
-          ))}
-        </ul>
-      ) : null}
-    </StyledNavbarItem>
-  );
-};
 
 export default NavbarItem;

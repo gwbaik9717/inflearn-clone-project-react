@@ -1,5 +1,6 @@
 export const courseData = [
   {
+    id: "000",
     title: "UIKit - iOS14 실무 가이드 <iOS앱 진짜 개발자 되기>",
     tags: ["+300명"],
     author: "iOS Developer",
@@ -11,6 +12,7 @@ export const courseData = [
     skills: "취업, 면접, 포트폴리오",
   },
   {
+    id: "001",
     title: "일주일 완성! 3dsmax 입문 (자동차 및 캐릭터 만들기)",
     tags: ["+300명"],
     author: "목마하임(MokmaHeim)",
@@ -22,6 +24,7 @@ export const courseData = [
     skills: "취업, 기술면접, 포트폴리오",
   },
   {
+    id: "002",
     title: "Confluence를 활용해서 효과적으로 지식 관리와 프로젝트 협업하기",
     tags: ["+100명"],
     author: "lesstif",
@@ -33,6 +36,7 @@ export const courseData = [
     skills: "취업, 면접, 포트폴리오",
   },
   {
+    id: "003",
     title: "제대로 파는 Git & GitHub - by 얄코",
     tags: ["+500명", "새강의", "할인중"],
     author: "얄팍한 코딩사전",
@@ -44,6 +48,7 @@ export const courseData = [
     skills: "취업, 면접, 포트폴리오",
   },
   {
+    id: "004",
     title:
       "비전공자를 위한 넓고 얇은 IT 지식 & 나의 개발 유형 알아보기! <M.B.I.T>",
     tags: ["+500명"],
@@ -56,6 +61,7 @@ export const courseData = [
     skills: "취업, 면접, 포트폴리오",
   },
   {
+    id: "005",
     title:
       "[C#과 유니티로 만드는 MMORPG 게임 개발 시리즈] Part1: C# 기초 프로그래밍 입문",
     tags: ["+2900명"],
@@ -68,6 +74,7 @@ export const courseData = [
     skills: "취업, 면접, 포트폴리오",
   },
   {
+    id: "006",
     title: "Python 부트캠프",
     tags: ["+500명"],
     author: "제주코딩베이스캠프",
@@ -79,6 +86,7 @@ export const courseData = [
     skills: "취업, 면접, 포트폴리오",
   },
   {
+    id: "007",
     title: "뉴욕 프로덕트 디자이너가 알려주는, 입문자를 위한 UX디자인 개론",
     tags: ["+500명"],
     author: "에릭",

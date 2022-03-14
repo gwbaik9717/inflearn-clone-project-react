@@ -1,58 +1,32 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as All from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserCart, setUserWishList } from "../Redux modules/setLoginInfo";
 
-const StyledCardBack = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  display: none;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  font-size: 13px;
-  width: 100%;
-  height: 100%;
-  padding: 0.75rem;
+const CourseCardBack = ({ id, title, level, fields, skills }) => {
+  const { isLoggedIn } = useSelector((state) => state.setLoginInfo);
+  const { cart, wishlist } = useSelector((state) => state.setLoginInfo);
+  const dispatch = useDispatch();
 
-  .course-title {
-    font-size: 0.95rem;
-    line-height: 1.25;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
+  const onClickAddCart = () => {
+    isLoggedIn
+      ? //장바구니 아이템 중복 방지
+        !cart.includes(id)
+        ? dispatch(setUserCart(id))
+        : alert("이미 장바구니에 있습니다!")
+      : alert("로그인 후 이용해주세요.");
+  };
 
-  .course-detail {
-    width: 100%;
-    color: #c5ebf8;
-  }
+  const onClickAddWishList = () => {
+    isLoggedIn
+      ? //위시리스트 아이템 중복 방지
+        !wishlist.includes(id)
+        ? dispatch(setUserWishList(id))
+        : alert("이미 찜한 강의입니다.")
+      : alert("로그인 후 이용해주세요.");
+  };
 
-  .course-detail > div {
-    margin-bottom: 0.07rem;
-  }
-
-  span > svg {
-    margin-right: 0.3rem;
-  }
-
-  .btns {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding-right: 0.15rem;
-    padding-bottom: 0.5rem;
-    text-align: center;
-    font-size: 17px;
-    color: #fff;
-  }
-
-  .btns > div {
-    padding: 0.15rem;
-    box-sizing: content-box;
-  }
-`;
-
-const CourseCardBack = ({ title, level, fields, skills }) => {
   return (
     <StyledCardBack className="course-card--back">
       <a href="#">
@@ -124,18 +98,118 @@ const CourseCardBack = ({ title, level, fields, skills }) => {
       </a>
 
       <div className="btns">
-        <div>
+        <div id="cart" onClick={onClickAddCart}>
           <FontAwesomeIcon icon={All.faCartShopping} />
         </div>
-        <div>
+        <div id="wishlist" onClick={onClickAddWishList}>
           <FontAwesomeIcon icon={All.faHeart} />
         </div>
-        <div>
+        <div id="interest">
           <FontAwesomeIcon icon={All.faPlus} />
         </div>
       </div>
     </StyledCardBack>
   );
 };
+
+const StyledCardBack = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 13px;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+
+  .course-title {
+    font-size: 0.95rem;
+    line-height: 1.25;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .course-detail {
+    width: 100%;
+    color: #c5ebf8;
+  }
+
+  .course-detail > div {
+    margin-bottom: 0.07rem;
+  }
+
+  span > svg {
+    margin-right: 0.3rem;
+  }
+
+  .btns {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-right: 0.15rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    font-size: 17px;
+    color: #fff;
+  }
+
+  .btns > div {
+    padding: 0.15rem;
+    box-sizing: content-box;
+    position: relative;
+  }
+
+  .btns > div:hover::before {
+    content: "안녕";
+    background-color: rgba(255, 221, 87, 0.9);
+    color: #fff;
+    position: absolute;
+    bottom: 50%;
+    right: 50px;
+    transform: translate(1rem, 50%);
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+    width: auto;
+    display: block;
+    padding: 6px 8px;
+  }
+
+  #cart:hover::before {
+    content: "바구니에 추가하기";
+  }
+
+  #wishlist:hover::before {
+    content: "위시리스트에 추가하기";
+  }
+
+  #interest:hover::before {
+    content: "내 폴더에 추가하기";
+  }
+
+  .btns > div:hover::after {
+    content: "";
+    transform: rotate(45deg);
+    display: block;
+    background-color: rgba(255, 221, 87, 0.9);
+    right: 30px;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+  }
+
+  #cart:hover {
+  }
+
+  #wishlist {
+  }
+
+  #interest {
+  }
+`;
 
 export default CourseCardBack;

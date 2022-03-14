@@ -6,27 +6,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import NavBarBtn from "./NavbarBtn";
 
-const StyledNavbarRight = styled.div`
-  display: flex;
-  align-items: center;
-
-  .navbar-item {
-    padding: 0.5rem;
-  }
-
-  .navbar-item > a {
-    display: flex;
-    height: 48px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #profile .icon {
-    border-radius: 50%;
-    overflow: hidden;
-  }
-`;
-
 const NavbarRight = () => {
   const itemInfos = [
     { title: "지식공유참여", hasDropdown: false, id: "share" },
@@ -34,13 +13,12 @@ const NavbarRight = () => {
       title: "",
       hasDropdown: true,
       NippleSize: 23,
-      nipplePosition: "top: -12px; right: 15px;",
+      nipplePosition: "top: 52px; right: 5px;",
       icon: <FontAwesomeIcon icon={All.faShoppingCart} />,
       id: "cart",
     },
     {
       title: "",
-      hasDropdown: true,
       NippleSize: 23,
       nipplePosition: "top: -12px; right: 15px;",
       icon: <FontAwesomeIcon icon={All.faBell} />,
@@ -91,5 +69,26 @@ const NavbarRight = () => {
     </StyledNavbarRight>
   );
 };
+
+const StyledNavbarRight = styled.div`
+  display: flex;
+  align-items: center;
+
+  .navbar-item {
+    padding: 0.5rem;
+  }
+
+  .navbar-item > a {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #profile .icon {
+    border-radius: 50%;
+    overflow: hidden;
+  }
+`;
 
 export default NavbarRight;
