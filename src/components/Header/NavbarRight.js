@@ -28,7 +28,7 @@ const NavbarRight = () => {
       title: "",
       hasDropdown: true,
       NippleSize: 23,
-      nipplePosition: "top: -12px; right: 15px;",
+      nipplePosition: "top: 52px; right: 5px;",
       icon: (
         <img
           src="https://cdn.inflearn.com/public/main/profile/default_profile.png"

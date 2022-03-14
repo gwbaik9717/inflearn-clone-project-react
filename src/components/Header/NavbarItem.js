@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import DropdownMenuItem from "./DropdownMenuItem";
 import DropdownCart from "./DropdownCart";
+import DropdownProfile from "./DropdownProfile";
 
 const NavbarItem = ({
   title,
@@ -23,7 +24,7 @@ const NavbarItem = ({
       case "message":
         return "";
       case "profile":
-        return "";
+        return <DropdownProfile />;
       default:
         return (
           dropdownLv1 && (
@@ -83,6 +84,10 @@ const StyledNavbarItem = styled.div`
       display:block;
     }
 
+    &:hover > .profile-dropdown{
+      display:block;
+    }
+
     &::before {
       width: ${NippleSize || 12}px;
       height: ${NippleSize || 12}px;
@@ -93,7 +98,7 @@ const StyledNavbarItem = styled.div`
       ${nipplePosition || "top: 53px; left: 30px;"}
       transform: rotate(45deg);
       background-color: #fff;
-      z-index: 50;
+      z-index: 12;
       display: none;
       pointer-events: none;
   

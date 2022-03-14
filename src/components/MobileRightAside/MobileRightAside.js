@@ -7,6 +7,144 @@ import { setLoggedIn } from "../Redux modules/setLoginInfo";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
+const MobileRightAside = () => {
+  const menuLists = [
+    {
+      title: "이어서 학습하기",
+      icon: <FontAwesomeIcon icon={All.faPlayCircle} />,
+    },
+    { title: "대시보드", icon: <FontAwesomeIcon icon={All.faChartPie} /> },
+    { title: "내 학습", icon: <FontAwesomeIcon icon={All.faBook} /> },
+    { title: "강의노트", icon: <FontAwesomeIcon icon={All.faFileInvoice} /> },
+    { title: "멘토링", icon: <FontAwesomeIcon icon={All.faLightbulb} /> },
+    {
+      title: "작성한 게시글",
+      icon: <FontAwesomeIcon icon={All.faCommentAlt} />,
+    },
+    { title: "더보기", icon: <FontAwesomeIcon icon={All.faEllipsisH} /> },
+  ];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const toggleMobileModal = () => {
+    dispatch(setIsRightModalOpen());
+  };
+  const { isRightModalOpen } = useSelector((state) => state.toggleMobileModal);
+  const goHome = () => {
+    dispatch(setLoggedIn());
+    toggleMobileModal();
+    navigate(`/`);
+  };
+
+  useEffect(() => {
+    if (isRightModalOpen) {
+      if (typeof window != "undefined" && window.document) {
+        document.body.style.overflow = "hidden";
+      }
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isRightModalOpen]);
+
+  return (
+    <>
+      <StyledBg
+        className="dimmed-bg"
+        onClick={toggleMobileModal}
+        isRightModalOpen={isRightModalOpen}
+      ></StyledBg>
+
+      <StyledAside
+        isRightModalOpen={isRightModalOpen}
+        className="mobile-right-aside"
+      >
+        <div className="profile-modal">
+          <div className="modal-header">
+            <span className="close-btn" onClick={toggleMobileModal}>
+              <span className="icon">
+                <FontAwesomeIcon icon={All.faTimes} />
+              </span>
+            </span>
+            <a className="message-btn">
+              <span className="icon">
+                <FontAwesomeIcon icon={All.faBell} />
+              </span>
+            </a>
+          </div>
+          <div className="modal-info">
+            <div className="user-info">
+              <div className="info-left">
+                <div className="thumbnail">
+                  <img
+                    src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
+                    alt="profile_img"
+                  />
+                  <div className="thumbnail-settings">설정</div>
+                </div>
+              </div>
+              <div className="info-right">
+                <a href="#">
+                  <div className="name">
+                    <FontAwesomeIcon icon={All.faHome} />
+                    백건우
+                  </div>
+                  <span className="icon">
+                    <FontAwesomeIcon icon={All.faChevronRight} />
+                  </span>
+                </a>
+                <div className="rank">학생</div>
+              </div>
+            </div>
+            <div className="point-info">
+              <a href="#" className="coupon point-box">
+                <span className="title">쿠폰</span>
+                <span className="content">
+                  <span className="value">0</span>개
+                </span>
+              </a>
+              <a href="#" className="my-points point-box">
+                <span className="title">포인트</span>
+                <span className="content">
+                  <span className="value">0</span>잎
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div className="modal-menu">
+            <div className="menu-title">
+              <span>학생</span>
+            </div>
+            <div className="list-content">
+              <div className="menu-lists">
+                {menuLists.map(({ title, icon }) => (
+                  <div className="menu-list">
+                    <a href="#">
+                      <span className="icon">{icon}</span>
+                      <span className="menu-title">{title}</span>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="modal-footer">
+            <span className="logout" onClick={goHome}>
+              로그아웃
+            </span>
+            <span className="cs">
+              <a href="#">고객센터</a>
+              <span className="icon">
+                <FontAwesomeIcon icon={All.faChevronRight} />
+              </span>
+            </span>
+          </div>
+        </div>
+      </StyledAside>
+    </>
+  );
+};
+
 const StyledAside = styled.div`
   display: none;
 
@@ -263,143 +401,5 @@ const StyledBg = styled.div`
   z-index: 75;
   display: ${({ isRightModalOpen }) => (isRightModalOpen ? "block" : "none")};
 `;
-
-const MobileRightAside = () => {
-  const menuLists = [
-    {
-      title: "이어서 학습하기",
-      icon: <FontAwesomeIcon icon={All.faPlayCircle} />,
-    },
-    { title: "대시보드", icon: <FontAwesomeIcon icon={All.faChartPie} /> },
-    { title: "내 학습", icon: <FontAwesomeIcon icon={All.faBook} /> },
-    { title: "강의노트", icon: <FontAwesomeIcon icon={All.faFileInvoice} /> },
-    { title: "멘토링", icon: <FontAwesomeIcon icon={All.faLightbulb} /> },
-    {
-      title: "작성한 게시글",
-      icon: <FontAwesomeIcon icon={All.faCommentAlt} />,
-    },
-    { title: "더보기", icon: <FontAwesomeIcon icon={All.faEllipsisH} /> },
-  ];
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const toggleMobileModal = () => {
-    dispatch(setIsRightModalOpen());
-  };
-  const { isRightModalOpen } = useSelector((state) => state.toggleMobileModal);
-  const goHome = () => {
-    dispatch(setLoggedIn());
-    toggleMobileModal();
-    navigate(`/`);
-  };
-
-  useEffect(() => {
-    if (isRightModalOpen) {
-      if (typeof window != "undefined" && window.document) {
-        document.body.style.overflow = "hidden";
-      }
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isRightModalOpen]);
-
-  return (
-    <>
-      <StyledBg
-        className="dimmed-bg"
-        onClick={toggleMobileModal}
-        isRightModalOpen={isRightModalOpen}
-      ></StyledBg>
-
-      <StyledAside
-        isRightModalOpen={isRightModalOpen}
-        className="mobile-right-aside"
-      >
-        <div className="profile-modal">
-          <div className="modal-header">
-            <span className="close-btn" onClick={toggleMobileModal}>
-              <span className="icon">
-                <FontAwesomeIcon icon={All.faTimes} />
-              </span>
-            </span>
-            <a className="message-btn">
-              <span className="icon">
-                <FontAwesomeIcon icon={All.faBell} />
-              </span>
-            </a>
-          </div>
-          <div className="modal-info">
-            <div className="user-info">
-              <div className="info-left">
-                <div className="thumbnail">
-                  <img
-                    src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
-                    alt="profile_img"
-                  />
-                  <div className="thumbnail-settings">설정</div>
-                </div>
-              </div>
-              <div className="info-right">
-                <a href="#">
-                  <div className="name">
-                    <FontAwesomeIcon icon={All.faHome} />
-                    백건우
-                  </div>
-                  <span className="icon">
-                    <FontAwesomeIcon icon={All.faChevronRight} />
-                  </span>
-                </a>
-                <div className="rank">학생</div>
-              </div>
-            </div>
-            <div className="point-info">
-              <a href="#" className="coupon point-box">
-                <span className="title">쿠폰</span>
-                <span className="content">
-                  <span className="value">0</span>개
-                </span>
-              </a>
-              <a href="#" className="my-points point-box">
-                <span className="title">포인트</span>
-                <span className="content">
-                  <span className="value">0</span>잎
-                </span>
-              </a>
-            </div>
-          </div>
-
-          <div className="modal-menu">
-            <div className="menu-title">
-              <span>학생</span>
-            </div>
-            <div className="list-content">
-              <div className="menu-lists">
-                {menuLists.map(({ title, icon }) => (
-                  <div className="menu-list">
-                    <a href="#">
-                      <span className="icon">{icon}</span>
-                      <span className="menu-title">{title}</span>
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="modal-footer">
-            <span className="logout" onClick={goHome}>
-              로그아웃
-            </span>
-            <span className="cs">
-              <a href="#">고객센터</a>
-              <span className="icon">
-                <FontAwesomeIcon icon={All.faChevronRight} />
-              </span>
-            </span>
-          </div>
-        </div>
-      </StyledAside>
-    </>
-  );
-};
 
 export default MobileRightAside;
