@@ -35,6 +35,7 @@ const NavbarRight = () => {
       btnColor: "#fff",
       btnWeight: "400",
       borderColor: "rgb(219, 219, 219)",
+      navigateTo: "signup",
     },
   ];
 
@@ -46,7 +47,14 @@ const NavbarRight = () => {
         <NavbarItem title="지식공유참여" hasDropdown={false} id="share" />
 
         {btns.map(
-          ({ btnText, btnBgColor, btnColor, btnWeight, borderColor }) => (
+          ({
+            btnText,
+            btnBgColor,
+            btnColor,
+            btnWeight,
+            borderColor,
+            navigateTo,
+          }) => (
             <NavbarBtn
               key={btnText}
               btnText={btnText}
@@ -54,6 +62,7 @@ const NavbarRight = () => {
               btnColor={btnColor}
               btnWeight={btnWeight}
               borderColor={borderColor}
+              navigateTo={navigateTo}
             />
           )
         )}

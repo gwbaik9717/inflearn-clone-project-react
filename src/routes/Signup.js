@@ -7,181 +7,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setLoggedIn } from "../components/Redux modules/setLoginInfo";
-
-const StyledSignup = styled.section`
-  margin: 64px auto auto;
-  width: 320px;
-  height: 676px;
-
-  .signup-title {
-    font-weight: 500;
-    font-size: 26px;
-  }
-  .signup-messages {
-    margin-bottom: 24px;
-  }
-
-  .swiper-container {
-    width: 100%;
-  }
-
-  .swiper-wrapper {
-    width: 100%;
-  }
-
-  .swiper-slide {
-    width: 100%;
-  }
-
-  .swiper-slide p {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  .signup-form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-input {
-    margin-bottom: 16px;
-  }
-
-  .form-label {
-    line-height: 1.43;
-    letter-spacing: -0.3px;
-    font-size: 14px;
-    font-weight: 400;
-    color: #3e4042;
-  }
-
-  #email,
-  #email-confirm,
-  .password-input {
-    margin-top: 4px;
-    height: 48px;
-    width: 100%;
-    line-height: 1.47;
-    font-size: 15px;
-    border: 1px solid #dee2e6;
-    padding: 13px 12px;
-    letter-spacing: -0.3px;
-    border-radius: 4px;
-    background-color: #fff;
-  }
-
-  #email:focus,
-  #email-confirm:focus,
-  .password-input:focus-within {
-    border: 1px solid #00c471;
-  }
-
-  .password-input {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .password-input input {
-    border: none;
-    width: 100%;
-    margin-right: 12px;
-  }
-
-  .password-eye {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-
-  .password-eye svg {
-    fill: rgb(33, 37, 41);
-  }
-
-  .form__error {
-    display: block;
-    line-height: 1.5;
-    letter-spacing: -0.3px;
-    font-size: 12px;
-    margin-top: 4px;
-    color: #e5503c;
-  }
-
-  .password-guide {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-  }
-
-  .password-guide--default {
-    line-height: 1.5;
-    letter-spacing: -0.3px;
-    font-size: 12px;
-    color: #abb0b5;
-  }
-
-  .password-guide--alert {
-    color: #e5503c;
-  }
-
-  .password-guide--success {
-    color: #00c471;
-  }
-
-  .signup-main > .btn {
-    border: 1px solid #00c471;
-    font-weight: 700;
-    background-color: #00c471;
-    margin: 16px 0 12px 0;
-    color: #fff;
-    padding: 0 16px;
-    line-height: 1.47;
-    font-weight: 700;
-    height: 48px;
-    font-size: 15px;
-    letter-spacing: -0.3px;
-    border-radius: 4px;
-    width: 100%;
-  }
-`;
-
-const StyledFooter = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 32px;
-
-  .footer-policy {
-    line-height: 1.5;
-    letter-spacing: -0.3px;
-    font-size: 12px;
-    font-weight: 400;
-    margin-bottom: 6px;
-    color: #858a8d;
-  }
-
-  .footer-policy a {
-    color: #1964d5;
-  }
-
-  .footer-agree {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  label {
-    line-height: 1.5;
-    letter-spacing: -0.3px;
-    font-size: 12px;
-    font-weight: 400;
-    margin-left: 4px;
-    color: #858a8d;
-    order: 1;
-  }
-`;
+import { authService } from "../fbase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -270,7 +101,7 @@ const Signup = () => {
     dispatch(setLoggedIn());
   };
 
-  const goHome = () => {
+  /*const goLoggedInHome = () => {
     if (
       isEmail &&
       isEmailConfrimed &&
@@ -281,8 +112,35 @@ const Signup = () => {
       isPasswordConfirmed &&
       isChecked
     ) {
+
       setUserLoggedIn();
       navigate(`/`);
+    }
+  };*/
+
+  const goLoggedInHome = async () => {
+    if (
+      isEmail &&
+      isEmailConfrimed &&
+      isPassword1 &&
+      isPassword2 &&
+      isPassword2 &&
+      isPassword3 &&
+      isPasswordConfirmed
+    ) {
+      try {
+        const data = await createUserWithEmailAndPassword(
+          authService,
+          currentEmail.current,
+          currentPassword
+        );
+
+        console.log(data);
+        setUserLoggedIn();
+        navigate(`/`);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -471,7 +329,7 @@ const Signup = () => {
               </div>
             </form>
 
-            <button className="btn" onClick={goHome}>
+            <button className="btn" onClick={goLoggedInHome}>
               가입하기
             </button>
 
@@ -506,5 +364,180 @@ const Signup = () => {
     </>
   );
 };
+
+const StyledSignup = styled.section`
+  margin: 64px auto auto;
+  width: 320px;
+  height: 676px;
+
+  .signup-title {
+    font-weight: 500;
+    font-size: 26px;
+  }
+  .signup-messages {
+    margin-bottom: 24px;
+  }
+
+  .swiper-container {
+    width: 100%;
+  }
+
+  .swiper-wrapper {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    width: 100%;
+  }
+
+  .swiper-slide p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-input {
+    margin-bottom: 16px;
+  }
+
+  .form-label {
+    line-height: 1.43;
+    letter-spacing: -0.3px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #3e4042;
+  }
+
+  #email,
+  #email-confirm,
+  .password-input {
+    margin-top: 4px;
+    height: 48px;
+    width: 100%;
+    line-height: 1.47;
+    font-size: 15px;
+    border: 1px solid #dee2e6;
+    padding: 13px 12px;
+    letter-spacing: -0.3px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+
+  #email:focus,
+  #email-confirm:focus,
+  .password-input:focus-within {
+    border: 1px solid #00c471;
+  }
+
+  .password-input {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .password-input input {
+    border: none;
+    width: 100%;
+    margin-right: 12px;
+  }
+
+  .password-eye {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .password-eye svg {
+    fill: rgb(33, 37, 41);
+  }
+
+  .form__error {
+    display: block;
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    font-size: 12px;
+    margin-top: 4px;
+    color: #e5503c;
+  }
+
+  .password-guide {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+  }
+
+  .password-guide--default {
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    font-size: 12px;
+    color: #abb0b5;
+  }
+
+  .password-guide--alert {
+    color: #e5503c;
+  }
+
+  .password-guide--success {
+    color: #00c471;
+  }
+
+  .signup-main > .btn {
+    border: 1px solid #00c471;
+    font-weight: 700;
+    background-color: #00c471;
+    margin: 16px 0 12px 0;
+    color: #fff;
+    padding: 0 16px;
+    line-height: 1.47;
+    font-weight: 700;
+    height: 48px;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    border-radius: 4px;
+    width: 100%;
+  }
+`;
+
+const StyledFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+
+  .footer-policy {
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: #858a8d;
+  }
+
+  .footer-policy a {
+    color: #1964d5;
+  }
+
+  .footer-agree {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  label {
+    line-height: 1.5;
+    letter-spacing: -0.3px;
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 4px;
+    color: #858a8d;
+    order: 1;
+  }
+`;
 
 export default Signup;

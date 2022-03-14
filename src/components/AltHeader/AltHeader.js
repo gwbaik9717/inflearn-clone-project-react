@@ -3,6 +3,18 @@ import AltMobileContainer from "./AltMobileContainer";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
+const Header = () => {
+  const isMedium = useMediaQuery({ maxWidth: 1024 });
+
+  return (
+    <StyledHeader>
+      <nav className="navbar">
+        {isMedium ? <AltMobileContainer /> : <AltDesktopContainer />}
+      </nav>
+    </StyledHeader>
+  );
+};
+
 const StyledHeader = styled.header`
   position: sticky;
   top: 0;
@@ -21,17 +33,5 @@ const StyledHeader = styled.header`
     }
   }
 `;
-
-const Header = () => {
-  const isMedium = useMediaQuery({ maxWidth: 1024 });
-
-  return (
-    <StyledHeader>
-      <nav className="navbar">
-        {isMedium ? <AltMobileContainer /> : <AltDesktopContainer />}
-      </nav>
-    </StyledHeader>
-  );
-};
 
 export default Header;

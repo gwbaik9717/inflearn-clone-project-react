@@ -5,6 +5,38 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsLeftModalOpen } from "../Redux modules/toggleMobileModal";
 
+const MobileContainer = () => {
+  const dispatch = useDispatch();
+  const toggleMobileLeftModal = () => {
+    dispatch(setIsLeftModalOpen());
+  };
+
+  return (
+    <StyledContainer className="container mobile_container">
+      <div className="content">
+        <div className="mobile-navbar-left">
+          <span class="btn" onClick={toggleMobileLeftModal}>
+            <MobileHeaderLeft />
+          </span>
+        </div>
+        <div className="mobile-navbar-logo">
+          <Link to={"/"}>
+            <Logo width={110} />
+            <title>인프런 브랜드 로고</title>
+          </Link>
+        </div>
+        <div className="mobile-navbar-right">
+          <div className="btn login">로그인</div>
+
+          <Link to={"/signup"} className="btn signup">
+            회원가입
+          </Link>
+        </div>
+      </div>
+    </StyledContainer>
+  );
+};
+
 const StyledContainer = styled.div`
   height: 100%;
   padding: 0 10px;
@@ -63,37 +95,5 @@ const StyledContainer = styled.div`
     background-color: #ff7867;
   }
 `;
-
-const MobileContainer = () => {
-  const dispatch = useDispatch();
-  const toggleMobileLeftModal = () => {
-    dispatch(setIsLeftModalOpen());
-  };
-
-  return (
-    <StyledContainer className="container mobile_container">
-      <div className="content">
-        <div className="mobile-navbar-left">
-          <span class="btn" onClick={toggleMobileLeftModal}>
-            <MobileHeaderLeft />
-          </span>
-        </div>
-        <div className="mobile-navbar-logo">
-          <Link to={"/"}>
-            <Logo width={110} />
-            <title>인프런 브랜드 로고</title>
-          </Link>
-        </div>
-        <div className="mobile-navbar-right">
-          <div className="btn login">로그인</div>
-
-          <Link to={"/signup"} className="btn signup">
-            회원가입
-          </Link>
-        </div>
-      </div>
-    </StyledContainer>
-  );
-};
 
 export default MobileContainer;
