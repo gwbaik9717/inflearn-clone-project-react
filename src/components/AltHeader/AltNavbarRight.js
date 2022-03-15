@@ -3,23 +3,6 @@ import NavbarBtn from "../Header/NavbarBtn";
 import NavbarSearch from "../Header/NavbarSearch";
 import styled from "styled-components";
 
-const StyledNavbarRight = styled.div`
-  display: flex;
-  align-items: center;
-
-  .navbar-item {
-    display: flex;
-    padding: 8px 8px;
-  }
-
-  .navbar-item a {
-    display: flex;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
 const NavbarRight = () => {
   const btns = [
     {
@@ -45,7 +28,6 @@ const NavbarRight = () => {
 
       <div className="navbar-item">
         <NavbarItem title="지식공유참여" hasDropdown={false} id="share" />
-
         {btns.map(
           ({
             btnText,
@@ -70,5 +52,22 @@ const NavbarRight = () => {
     </StyledNavbarRight>
   );
 };
+
+const StyledNavbarRight = styled.div`
+  display: flex;
+  align-items: center;
+
+  .navbar-item {
+    display: flex;
+    padding: 8px 8px;
+  }
+
+  .navbar-item a {
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+  }
+`;
 
 export default NavbarRight;

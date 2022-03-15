@@ -8,11 +8,7 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setLoggedIn } from "../components/Redux modules/setLoginInfo";
 import { authService } from "../fbase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -98,25 +94,8 @@ const Signup = () => {
   };
 
   const setUserLoggedIn = () => {
-    dispatch(setLoggedIn());
+    dispatch(setLoggedIn(true));
   };
-
-  /*const goLoggedInHome = () => {
-    if (
-      isEmail &&
-      isEmailConfrimed &&
-      isPassword1 &&
-      isPassword2 &&
-      isPassword2 &&
-      isPassword3 &&
-      isPasswordConfirmed &&
-      isChecked
-    ) {
-
-      setUserLoggedIn();
-      navigate(`/`);
-    }
-  };*/
 
   const goLoggedInHome = async () => {
     if (
@@ -135,7 +114,7 @@ const Signup = () => {
           currentPassword
         );
 
-        console.log(data);
+        console.log("회원가입되었씁니다.");
         setUserLoggedIn();
         navigate(`/`);
       } catch (error) {

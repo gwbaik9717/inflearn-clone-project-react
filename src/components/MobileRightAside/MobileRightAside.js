@@ -6,6 +6,8 @@ import { setIsRightModalOpen } from "../Redux modules/toggleMobileModal";
 import { setLoggedIn } from "../Redux modules/setLoginInfo";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { authService } from "../../fbase";
+import { signOut } from "firebase/auth";
 
 const MobileRightAside = () => {
   const menuLists = [
@@ -29,11 +31,22 @@ const MobileRightAside = () => {
     dispatch(setIsRightModalOpen());
   };
   const { isRightModalOpen } = useSelector((state) => state.toggleMobileModal);
-  const goHome = () => {
-    dispatch(setLoggedIn());
+  const onClickLogout = async () => {
+    await signOut(authService)
+      .then(() => {
+        console.log("로그아웃 되었습니다.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    dispatch(setLoggedIn(false));
     toggleMobileModal();
     navigate(`/`);
   };
+  const {
+    info: { name, photoURL },
+  } = useSelector((state) => state.setLoginInfo);
 
   useEffect(() => {
     if (isRightModalOpen) {
@@ -74,10 +87,7 @@ const MobileRightAside = () => {
             <div className="user-info">
               <div className="info-left">
                 <div className="thumbnail">
-                  <img
-                    src="https://cdn.inflearn.com/public/main/profile/default_profile.png"
-                    alt="profile_img"
-                  />
+                  <img src={photoURL} alt="profile_img" />
                   <div className="thumbnail-settings">설정</div>
                 </div>
               </div>
@@ -85,7 +95,7 @@ const MobileRightAside = () => {
                 <a href="#">
                   <div className="name">
                     <FontAwesomeIcon icon={All.faHome} />
-                    백건우
+                    {name}
                   </div>
                   <span className="icon">
                     <FontAwesomeIcon icon={All.faChevronRight} />
@@ -129,7 +139,7 @@ const MobileRightAside = () => {
           </div>
 
           <div className="modal-footer">
-            <span className="logout" onClick={goHome}>
+            <span className="logout" onClick={onClickLogout}>
               로그아웃
             </span>
             <span className="cs">

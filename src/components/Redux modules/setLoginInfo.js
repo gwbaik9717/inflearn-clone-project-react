@@ -1,6 +1,19 @@
 //액션 생성 함수
-export const setLoggedIn = () => ({
+export const setLoggedIn = (isLoggedIn) => ({
   type: "LOGGED_IN",
+  isLoggedIn,
+});
+
+export const setUserInfo = (name, uid, photoURL, email) => ({
+  type: "SET_USER_INFO",
+  info: {
+    name: name ? name : "사용자",
+    uid,
+    photoURL: photoURL
+      ? photoURL
+      : "https://cdn.inflearn.com/public/main/profile/default_profile.png",
+    email,
+  },
 });
 
 export const setUserCart = (cart) => ({
@@ -16,6 +29,12 @@ export const setUserWishList = (wishlist) => ({
 //초기 상태
 const initialState = {
   isLoggedIn: false,
+  info: {
+    name: "",
+    uid: "",
+    photoURL: "",
+    email: "",
+  },
   cart: [],
   wishlist: [],
 };
@@ -26,7 +45,13 @@ export default function setLoginInfo(state = initialState, action) {
     case "LOGGED_IN":
       return {
         ...state,
-        isLoggedIn: !state.isLoggedIn,
+        isLoggedIn: action.isLoggedIn,
+      };
+
+    case "SET_USER_INFO":
+      return {
+        ...state,
+        info: action.info,
       };
 
     case "ADD_USER_CART":

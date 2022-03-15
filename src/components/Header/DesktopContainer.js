@@ -4,6 +4,25 @@ import NavbarRight from "./NavbarRight";
 import styled from "styled-components";
 import Logo from "../../img/Logo";
 
+const DesktopContainer = () => {
+  return (
+    <StyledContainer className="container desktop_container">
+      <div className="content">
+        <div className="navbar-logo">
+          <Link to={"/"}>
+            <Logo width={110} />
+            <title>인프런 브랜드 로고</title>
+          </Link>
+        </div>
+        <div className="navbar-menu">
+          <NavbarLeft />
+          <NavbarRight />
+        </div>
+      </div>
+    </StyledContainer>
+  );
+};
+
 const StyledContainer = styled.div`
   padding: 0 10px;
 
@@ -35,24 +54,5 @@ const StyledContainer = styled.div`
     width: 100%;
   }
 `;
-
-const DesktopContainer = () => {
-  return (
-    <StyledContainer className="container desktop_container">
-      <div className="content">
-        <div className="navbar-logo">
-          <Link to={"/"}>
-            <Logo width={110} />
-            <title>인프런 브랜드 로고</title>
-          </Link>
-        </div>
-        <div className="navbar-menu">
-          <NavbarLeft />
-          <NavbarRight />
-        </div>
-      </div>
-    </StyledContainer>
-  );
-};
 
 export default DesktopContainer;
