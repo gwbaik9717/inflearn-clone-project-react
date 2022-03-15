@@ -3,26 +3,52 @@ import * as All from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserCart, setUserWishList } from "../Redux modules/setLoginInfo";
+import { collection, addDoc, doc, setDoc, getDoc } from "firebase/firestore";
+import { dbService } from "../../fbase";
+import { useEffect } from "react";
 
 const CourseCardBack = ({ id, title, level, fields, skills }) => {
-  const { isLoggedIn } = useSelector((state) => state.setLoginInfo);
-  const { cart, wishlist } = useSelector((state) => state.setLoginInfo);
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.setLoginInfo);
+  const {
+    cart,
+    wishlist,
+    info: { uid },
+  } = useSelector((state) => state.setLoginInfo);
 
-  const onClickAddCart = () => {
+  const onClickAddCart = async () => {
+    const cartRef = collection(dbService, "cart");
+
     isLoggedIn
       ? //장바구니 아이템 중복 방지
         !cart.includes(id)
-        ? dispatch(setUserCart(id))
+        ? //firebase에 올리기
+          await setDoc(doc(cartRef, uid), {
+            cartItems: [...cart, id],
+          }).then(dispatch(setUserCart(id)))
         : alert("이미 장바구니에 있습니다!")
       : alert("로그인 후 이용해주세요.");
   };
 
-  const onClickAddWishList = () => {
+  /*const onClickAddWishList = () => {
     isLoggedIn
       ? //위시리스트 아이템 중복 방지
         !wishlist.includes(id)
         ? dispatch(setUserWishList(id))
+        : alert("이미 찜한 강의입니다.")
+      : alert("로그인 후 이용해주세요.");
+  };*/
+
+  const onClickAddWishList = async () => {
+    const wishlistRef = collection(dbService, "wishlist");
+
+    isLoggedIn
+      ? //위시리스트 아이템 중복 방지
+        !wishlist.includes(id)
+        ? //firebase에 올리기
+          await setDoc(doc(wishlistRef, uid), {
+            wishlistItems: [...wishlist, id],
+          }).then(dispatch(setUserWishList(id)))
         : alert("이미 찜한 강의입니다.")
       : alert("로그인 후 이용해주세요.");
   };

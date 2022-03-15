@@ -93,10 +93,6 @@ const Signup = () => {
     setIsChecked((current) => !current);
   };
 
-  const setUserLoggedIn = () => {
-    dispatch(setLoggedIn(true));
-  };
-
   const goLoggedInHome = async () => {
     if (
       isEmail &&
@@ -114,8 +110,8 @@ const Signup = () => {
           currentPassword
         );
 
-        console.log("회원가입되었씁니다.");
-        setUserLoggedIn();
+        console.log(data);
+        dispatch(setLoggedIn(true));
         navigate(`/`);
       } catch (error) {
         console.log(error);

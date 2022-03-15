@@ -24,6 +24,7 @@ const NavbarLeft = () => {
       hasDropdown: true,
       dropdownPosition: "top: 60px; left: 0;",
       nipplePosition: "top: 53px; left: 30px;",
+      navigateTo: "courses",
       dropdownLv1: [
         "개발 · 프로그래밍",
         "보안 · 네트워크",
@@ -75,8 +76,8 @@ const NavbarLeft = () => {
         [],
       ],
     },
-    { title: "로드맵", hasDropdown: false },
-    { title: "멘토링", hasDropdown: false },
+    { title: "로드맵", hasDropdown: false, navigateTo: "roadmap" },
+    { title: "멘토링", hasDropdown: false, navigateTo: "mentors" },
     {
       title: "커뮤니티",
       hasDropdown: true,
@@ -106,6 +107,7 @@ const NavbarLeft = () => {
         ({
           title,
           hasDropdown,
+          navigateTo,
           dropdownLv1,
           dropdownLv2,
           dropdownPosition,
@@ -115,6 +117,7 @@ const NavbarLeft = () => {
             key={title}
             title={title}
             hasDropdown={hasDropdown}
+            navigateTo={navigateTo}
             dropdownLv1={dropdownLv1}
             dropdownLv2={dropdownLv2}
             dropdownPosition={dropdownPosition}

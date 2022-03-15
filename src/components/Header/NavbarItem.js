@@ -10,6 +10,7 @@ const NavbarItem = ({
   hasDropdown,
   dropdownPosition,
   nipplePosition,
+  navigateTo,
   NippleSize,
   dropdownLv1,
   dropdownLv2,
@@ -53,7 +54,7 @@ const NavbarItem = ({
       className="navbar-item"
       id={icon ? id : null}
     >
-      <Link to={`/roadmap`}>
+      <Link to={`/${navigateTo}`}>
         <span className={icon ? "icon" : null}>{title ? title : icon}</span>
       </Link>
 
